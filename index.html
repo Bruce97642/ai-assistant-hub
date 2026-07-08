@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 助理教學館|Claude × Gemini × ChatGPT 一次看懂</title>
+<meta name="description" content="三大 AI 助理完整教學:Claude 文書應用、Gemini 工作流、ChatGPT 入門實戰。免費指南+測驗,幫你選對第一個 AI 助理。">
+<meta property="og:title" content="AI 助理教學館|Claude × Gemini × ChatGPT 一次看懂">
+<meta property="og:description" content="免費教學指南+測驗:30 秒找到最適合你的 AI 助理">
+<style>
+:root{--bg:#FAF7F2;--card:#FFFFFF;--ink:#2D3142;--soft:#6B7280;--line:#E5E0D8;
+--c1:#B3362B;--c1s:#F9ECEA;--c2:#3F6BB5;--c2s:#E8EFFA;--c3:#1F8A70;--c3s:#E5F4EF;--gold:#C99A2E;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.8;}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px;}
+/* hero */
+.hero{text-align:center;padding:56px 16px 40px;}
+.hero .kicker{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 18px;font-size:.85em;color:var(--soft);margin-bottom:18px;}
+.hero h1{font-size:2.1em;line-height:1.35;letter-spacing:.02em;}
+.hero h1 span{display:block;font-size:.55em;color:var(--soft);font-weight:500;margin-top:10px;}
+.quiz-cta{display:inline-block;margin-top:26px;background:var(--gold);color:#fff;font-weight:700;font-size:1.1em;padding:14px 34px;border-radius:99px;text-decoration:none;box-shadow:0 4px 14px rgba(201,154,46,.35);transition:transform .15s;}
+.quiz-cta:hover{transform:translateY(-2px);}
+.quiz-cta small{display:block;font-weight:400;font-size:.72em;opacity:.9;}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:36px 0 12px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 22px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s;border-top:6px solid;}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.08);}
+.card .tag{font-size:.78em;font-weight:700;padding:3px 12px;border-radius:99px;align-self:flex-start;margin-bottom:12px;}
+.card h2{font-size:1.25em;margin-bottom:8px;line-height:1.4;}
+.card p{font-size:.92em;color:var(--soft);flex:1;}
+.card .go{margin-top:14px;font-weight:700;font-size:.95em;}
+.card.claude{border-top-color:var(--c1);} .card.claude .tag{background:var(--c1s);color:var(--c1);} .card.claude .go{color:var(--c1);}
+.card.gemini{border-top-color:var(--c2);} .card.gemini .tag{background:var(--c2s);color:var(--c2);} .card.gemini .go{color:var(--c2);}
+.card.chatgpt{border-top-color:var(--c3);} .card.chatgpt .tag{background:var(--c3s);color:var(--c3);} .card.chatgpt .go{color:var(--c3);}
+/* course strip */
+.course{background:var(--card);border:1px dashed var(--gold);border-radius:18px;padding:26px;margin:28px 0;text-align:center;}
+.course h3{color:var(--gold);font-size:1.15em;margin-bottom:6px;}
+.course p{color:var(--soft);font-size:.95em;}
+.course a{display:inline-block;margin-top:12px;color:var(--gold);font-weight:700;}
+footer{text-align:center;color:var(--soft);font-size:.85em;padding:36px 16px 44px;border-top:1px solid var(--line);margin-top:36px;}
+footer a{color:var(--c2);}
+@media(max-width:720px){.cards{grid-template-columns:1fr;}.hero h1{font-size:1.65em;}}
+</style>
+</head>
+<body>
+<div class="hero wrap">
+  <span class="kicker">在地工作者 × 教人把 AI 當助理</span>
+  <h1>AI 助理教學館<span>Claude × Gemini × ChatGPT,三大 AI 助理一次看懂</span></h1>
+  <a class="quiz-cta" href="quiz.html">🎯 30 秒測驗:你適合哪個 AI 助理?<small>六個問題,找到你的第一個 AI 助理</small></a>
+</div>
+
+<div class="wrap">
+  <div class="cards">
+    <a class="card claude" href="guides/claude.html">
+      <span class="tag">Anthropic Claude</span>
+      <h2>Claude 文書作業<br>完全應用指南</h2>
+      <p>文書代辦力最強。從網頁版生 Word/Excel/PPT、Chrome 外掛自動填表,到 Cowork 桌面數位同事——五大工具全圖解,附七種職業效益速查與提示語範本庫。</p>
+      <span class="go">看完整指南 →</span>
+    </a>
+    <a class="card gemini" href="guides/gemini.html">
+      <span class="tag">Google Gemini</span>
+      <h2>Gemini 完整<br>解析指南</h2>
+      <p>用 Gmail 的人已經有它了。模型家族、Deep Research 研究代理、Workspace 側邊欄手把手教學,加上從第 1 週到第 1 季的導入路線圖。</p>
+      <span class="go">看完整指南 →</span>
+    </a>
+    <a class="card chatgpt" href="guides/chatgpt.html">
+      <span class="tag">OpenAI ChatGPT</span>
+      <h2>ChatGPT × Codex<br>完整教學手冊</h2>
+      <p>國民入門款。運作原理白話版、CRTF 提示詞框架、六大應用場景逐步拆解,進階再到 Codex 代理開發——十章課程級教材,含練習題。</p>
+      <span class="go">看完整指南 →</span>
+    </a>
+  </div>
+
+  <div class="course">
+    <h3>📚 想跟著真人學?</h3>
+    <p>這些教材都來自實體課程《AI 當你的助理》——3 小時從零上手,適合社區夥伴、行政文書工作者、完全新手。<br>開課邀約、企業/公所內訓,歡迎聯絡。</p>
+    <a href="https://www.facebook.com/wang.shao.yu.425898" target="_blank">聯絡王少宇(Facebook)→</a>
+  </div>
+</div>
+
+<footer>
+  整理:王少宇|花蓮光復鄉・協會理事長・在地工作者<br>
+  資訊基準:2026 年 7 月|AI 工具更新快,實際功能與價格以各官方為準<br>
+  <a href="https://www.facebook.com/wang.shao.yu.425898" target="_blank">Facebook</a>
+</footer>
+</body>
+</html>

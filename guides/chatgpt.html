@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChatGPT × Codex 完整教學手冊|AI 助理教學館</title>
+<meta name="description" content="ChatGPT 與 Codex 詳解、入門操作、應用場景——課程教材網頁版(約十章+附錄)">
+<style>
+:root{--bg:#FAF7F2;--card:#FFFFFF;--ink:#2D3142;--soft:#6B7280;--accent:#1F8A70;--accent-soft:#E5F4EF;--line:#E5E0D8;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.85;font-size:17px;}
+.topbar{background:var(--accent);color:#fff;padding:10px 16px;font-size:14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:9;}
+.topbar a{color:#fff;text-decoration:none;font-weight:700;}
+.wrap{max-width:840px;margin:0 auto;padding:28px 20px 64px;}
+header.guide{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 26px;margin-bottom:28px;border-top:6px solid var(--accent);}
+header.guide h1{font-size:1.7em;line-height:1.4;}
+header.guide p.sub{color:var(--soft);margin-top:8px;font-size:.95em;}
+.badge{display:inline-block;background:var(--accent-soft);color:var(--accent);font-size:.8em;font-weight:700;padding:3px 12px;border-radius:99px;margin-bottom:12px;}
+article h1{font-size:1.45em;margin:2.2em 0 .7em;padding:.4em .8em;background:var(--accent-soft);border-left:6px solid var(--accent);border-radius:8px;}
+article h2{font-size:1.2em;margin:1.8em 0 .6em;color:var(--accent);border-bottom:2px solid var(--line);padding-bottom:.3em;}
+article h3{font-size:1.05em;margin:1.4em 0 .5em;}
+article p{margin:.7em 0;}
+article ul,article ol{margin:.7em 0 .7em 1.6em;}
+article li{margin:.35em 0;}
+article table{width:100%;border-collapse:collapse;margin:1em 0;font-size:.92em;background:var(--card);display:block;overflow-x:auto;}
+article th,article td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top;min-width:90px;}
+article th{background:var(--accent-soft);color:var(--accent);white-space:nowrap;}
+article strong{color:var(--accent);}
+article blockquote{border-left:4px solid var(--accent);background:var(--card);padding:10px 16px;margin:1em 0;border-radius:0 8px 8px 0;color:var(--soft);}
+article code{background:#F0EDE6;padding:2px 6px;border-radius:4px;font-size:.9em;}
+article pre{background:#2D3142;color:#F5F5F5;padding:14px 18px;border-radius:10px;overflow-x:auto;margin:1em 0;}
+article pre code{background:none;color:inherit;padding:0;}
+article hr{border:none;border-top:2px dashed var(--line);margin:2em 0;}
+.dl{display:inline-block;background:var(--accent);color:#fff;padding:10px 22px;border-radius:99px;text-decoration:none;font-weight:700;margin-top:10px;}
+footer{text-align:center;color:var(--soft);font-size:.85em;padding:32px 16px;border-top:1px solid var(--line);margin-top:48px;}
+footer a{color:var(--accent);}
+@media(max-width:600px){body{font-size:16px;}.wrap{padding:20px 14px 48px;}}
+</style>
+</head>
+<body>
+<div class="topbar"><a href="../index.html">🏠 AI 助理教學館</a><a href="../quiz.html">測驗:你適合哪個 AI 助理?</a></div>
+<div class="wrap">
+<header class="guide">
+<span class="badge">OpenAI ChatGPT × Codex</span>
+<h1>ChatGPT × Codex 完整教學手冊</h1>
+<p class="sub">ChatGPT 與 Codex 詳解、入門操作、應用場景——課程教材網頁版(約十章+附錄)<br>資訊基準:2026 年 7 月|AI 工具更新快,實際介面與方案請以官方為準</p>
+<a class="dl" href="../downloads/ChatGPT_Codex_完整教學手冊.docx" download>⬇ 下載 Word 完整版(含排版)</a>
+</header>
+<article>
+<p>ChatGPT × Codex</p>
+<p>完整教學手冊</p>
+<p>詳解 ｜ 入門 ｜ 應用實戰</p>
+<p>含逐步操作指導、任務拆解流程與課程設計建議</p>
+<p>模組化課程教材　·　2026 年 7 月版</p>
+<p>目　錄</p>
+<h1>第一章　教材總覽與使用說明</h1>
+<h2>1.1 本教材的定位</h2>
+<p>本教材是一份「模組化」的教學資料，完整涵蓋 ChatGPT 與 Codex 兩大工具的：詳解（是什麼、怎麼運作）、入門（從零開始的操作步驟）、應用方式（實際工作場景的拆解流程）。內容以繁體中文撰寫，並將每一項操作拆解為可直接照做的步驟，方便講師依課程時數與學員程度自由組合章節。</p>
+<h2>1.2 適用對象</h2>
+<ul>
+<li>完全新手：沒用過任何 AI 工具，從註冊帳號開始教起。</li>
+<li>一般職場工作者：已會基本對話，想學會提示詞技巧與工作應用。</li>
+<li>開發者／技術人員：想導入 Codex 進行 AI 輔助開發與自動化。</li>
+<li>課程講師：可直接取用各章節作為講義、投影片素材與課堂練習題。</li>
+</ul>
+<h2>1.3 兩大工具一句話理解</h2>
+<table><thead><tr><th>工具</th><th>一句話定義</th><th>主要使用者</th><th>主要介面</th></tr></thead><tbody><tr><td>ChatGPT</td><td>以對話為核心的通用 AI 助理，能寫作、翻譯、分析、生成圖片與研究資料</td><td>所有人</td><td>網頁、手機 App、桌面 App</td></tr><tr><td>Codex</td><td>OpenAI 的 AI 程式代理（Coding Agent），能直接讀寫專案程式碼、執行指令、修 Bug、發 PR</td><td>開發者為主，進階使用者亦可</td><td>終端機 CLI、IDE 擴充、桌面 App、雲端</td></tr></tbody></table>
+<p>兩者的關係：ChatGPT 與 Codex 共用同一個 OpenAI 帳號體系。ChatGPT 是「你去問它」的對話助理；Codex 則是「你派任務給它」的執行代理，它會自己動手完成工作再回報結果。理解這個差異，是本課程的第一個核心觀念。</p>
+<p>💡 教學提示｜先講觀念再動手</p>
+<p>課堂上建議先用 10 分鐘講完 1.3 的對照表，讓學員建立「對話助理 vs. 執行代理」的心智模型，後面的操作教學會順很多。</p>
+<h1>第二章　ChatGPT 詳解</h1>
+<h2>2.1 什麼是 ChatGPT</h2>
+<p>ChatGPT 是 OpenAI 於 2022 年 11 月推出的 AI 對話服務，底層是「大型語言模型（LLM, Large Language Model）」。它透過閱讀海量文字資料學會語言規律，能理解你的問題並產生自然流暢的回應。截至 2026 年，ChatGPT 已是全球使用人數最多的 AI 應用之一，功能也從純文字對話擴展到圖像生成、語音互動、檔案分析、深度研究（Deep Research）與自動化代理。</p>
+<h2>2.2 運作原理（給非技術人員的版本）</h2>
+<h3>2.2.1 三個必懂關鍵字</h3>
+<ul>
+<li>Token（詞元）：模型處理文字的最小單位。中文約 1 個字 ≈ 1 個以上的 token。模型的「記憶量」與「計費」都以 token 計算。</li>
+<li>上下文視窗（Context Window）：模型一次能「看見」的對話總量。超過上限，最早的內容會被遺忘，這解釋了為什麼長對話後 AI 會忘記前面說過的事。</li>
+<li>幻覺（Hallucination）：模型是在「預測最合理的下一段文字」，而不是查資料庫，因此可能自信地說出錯誤內容。重要資訊務必要求它附上來源，或自行查證。</li>
+</ul>
+<h3>2.2.2 一次對話發生了什麼事（流程拆解）</h3>
+<ul>
+<li>你輸入文字（提示詞，Prompt），系統將它切成 token。</li>
+<li>模型根據「這次輸入 + 之前的對話 + 系統設定」計算最可能的回應。</li>
+<li>需要時，模型會呼叫工具：上網搜尋、執行程式、產生圖片、讀取你上傳的檔案。</li>
+<li>模型逐字生成回應並回傳給你；整段過程沒有「查詢標準答案」這回事。</li>
+</ul>
+<p>💡 教學提示｜課堂比喻</p>
+<p>可以把 LLM 比喻成「讀過整個圖書館、記憶力驚人但偶爾會腦補的博學同事」：它反應快、什麼都能聊，但關鍵數字與事實要幫它核對。</p>
+<h2>2.3 模型與方案（2026 年中現況）</h2>
+<p>OpenAI 的模型更新非常快，教學時請以官方最新公告為準。以下為 2026 年年中的大致樣貌：</p>
+<ul>
+<li>GPT-5.5 系列（現行主力）：GPT-5.5 Instant 為預設模型，主打快速回應；GPT-5.5 Thinking 具深度推理能力，適合複雜分析；GPT-5.5 Pro 提供最高階效能，面向專業研究與高難度任務。</li>
+<li>Codex 專用模型（gpt-5.x-codex 系列）：針對軟體工程最佳化，供 Codex 產品線使用。</li>
+<li>自動路由（Auto）：系統會依問題難度自動在快速與深度推理模型間切換，新手直接用預設即可。</li>
+</ul>
+<table><thead><tr><th>方案</th><th>價位帶（美元/月）</th><th>適合對象</th><th>重點差異</th></tr></thead><tbody><tr><td>Free 免費版</td><td>0</td><td>初學、輕度使用</td><td>可用預設模型與基本功能，額度有限</td></tr><tr><td>Go</td><td>低價位（約 8）</td><td>日常高頻對話者</td><td>額度大幅提升，模型層級較基本</td></tr><tr><td>Plus</td><td>20</td><td>職場專業者（最普遍）</td><td>完整功能：深度推理、Deep Research、影像/影片生成、Codex 使用額度</td></tr><tr><td>Pro（中階/頂級）</td><td>100 / 200</td><td>重度開發者、研究者</td><td>更高甚至近乎不限的額度、最高階模型、更多 Codex 用量</td></tr><tr><td>Business / Enterprise / Edu</td><td>另議</td><td>企業與學校</td><td>管理後台、資料保護、SSO、更高安全性</td></tr></tbody></table>
+<p>⚠ 注意｜價格與方案會變動</p>
+<p>OpenAI 於 2026 年多次調整方案（例如新增低價 Go 方案與中階 Pro 方案）。授課前請至 openai.com 確認最新價格與內容，投影片註明「以官方公告為準」。</p>
+<h2>2.4 核心功能總覽</h2>
+<table><thead><tr><th>功能</th><th>說明</th><th>課程常見用途</th></tr></thead><tbody><tr><td>文字對話</td><td>問答、寫作、改寫、翻譯、企劃</td><td>所有課程的基礎</td></tr><tr><td>檔案上傳</td><td>讀取 PDF、Word、Excel、圖片並分析</td><td>文件摘要、資料分析課</td></tr><tr><td>圖像生成/編輯</td><td>以文字描述產生或修改圖片</td><td>行銷、簡報素材課</td></tr><tr><td>語音對話</td><td>即時語音交談、口說練習</td><td>語言學習課</td></tr><tr><td>Deep Research 深度研究</td><td>自動搜尋數十個來源並產出附引用的研究報告</td><td>市場調查、論文前期</td></tr><tr><td>資料分析</td><td>上傳資料表，自動寫程式做統計與圖表</td><td>Excel／數據課</td></tr><tr><td>記憶（Memory）</td><td>記住你的偏好與背景，跨對話沿用</td><td>個人化設定教學</td></tr><tr><td>自訂 GPT / Apps</td><td>打造特定用途的專屬助理或連接外部服務</td><td>進階應用課</td></tr><tr><td>Codex（程式代理）</td><td>從 ChatGPT 側邊欄派發程式任務</td><td>開發者課程（見第五章起）</td></tr></tbody></table>
+<h1>第三章　ChatGPT 入門操作（逐步教學）</h1>
+<h2>3.1 註冊與登入</h2>
+<ul>
+<li>開啟瀏覽器，前往 chatgpt.com（手機請至 App Store / Google Play 搜尋「ChatGPT」，認明 OpenAI 官方開發者）。</li>
+<li>點選「Sign up（註冊）」，可用 Email，或直接以 Google／Microsoft／Apple 帳號快速註冊。</li>
+<li>完成信箱驗證與基本資料（姓名、生日）。</li>
+<li>登入後即可免費開始使用；升級付費方案可之後再說。</li>
+</ul>
+<p>⚠ 注意｜常見卡關點</p>
+<p>學員最常見的問題是：下載到山寨 App、忘記驗證信箱、公司網路擋住網站。課前請學員先完成註冊，可省下 20 分鐘課堂時間。</p>
+<h2>3.2 介面導覽（5 個必認識的區域）</h2>
+<ul>
+<li>輸入框：畫面下方，打字的地方；旁邊的「＋」可上傳檔案、開啟工具（深度研究、圖像生成等）。</li>
+<li>模型選擇器：畫面上方，切換不同模型（新手用預設 Auto 即可）。</li>
+<li>左側邊欄：歷史對話清單、新對話按鈕、GPTs、專案（Projects）、Codex 入口。</li>
+<li>回應區工具：每則回應下方可複製、重新生成、朗讀、給予好壞評價。</li>
+<li>設定（Settings）：個人化、記憶管理、資料控制（是否允許用你的對話訓練模型）、語言。</li>
+</ul>
+<h2>3.3 第一次對話：任務拆解示範</h2>
+<p>課堂示範任務：「請 ChatGPT 幫我寫一封請假 Email」。以下是把一個模糊需求變成好結果的完整步驟：</p>
+<ul>
+<li>先講清楚身分與情境：「我是行政人員，明天要請病假一天，主管是張經理。」</li>
+<li>說明任務與要求：「請幫我寫一封語氣禮貌、150 字內的請假 Email，附上職務代理安排。」</li>
+<li>檢視結果並追問修改：「語氣再正式一點」「幫我加上聯絡電話的欄位」。</li>
+<li>滿意後複製使用。提醒學員：寄出前務必自己讀過一遍。</li>
+</ul>
+<h2>3.4 提示詞（Prompt）基礎：CRTF 四要素框架</h2>
+<p>寫好提示詞是本課程最重要的技能。建議用四個要素檢查每一次的輸入：</p>
+<table><thead><tr><th>要素</th><th>英文</th><th>說明</th><th>範例片段</th></tr></thead><tbody><tr><td>角色</td><td>Character / Role</td><td>告訴 AI 它是誰</td><td>「你是一位資深行銷顧問」</td></tr><tr><td>任務</td><td>Request / Task</td><td>要它做什麼，愈具體愈好</td><td>「幫我寫 3 個 Instagram 貼文標題」</td></tr><tr><td>脈絡</td><td>Context</td><td>背景、對象、限制條件</td><td>「產品是手工果醬，客群是 30–45 歲家庭主婦」</td></tr><tr><td>格式</td><td>Format</td><td>希望的輸出形式</td><td>「用表格呈現，每個標題附 15 字說明」</td></tr></tbody></table>
+<h3>完整範例（課堂可直接展示前後對比）</h3>
+<p>弱提示詞：「幫我寫貼文」→ 結果泛泛而談。</p>
+<p>你是一位擅長社群行銷的文案專家。（角色）</p>
+<p>請幫我寫 3 個 Instagram 貼文標題與內文。（任務）</p>
+<p>產品是手工果醬，主打無添加，客群為 30–45 歲注重健康的家庭；</p>
+<p>品牌語氣溫暖、不浮誇。（脈絡）</p>
+<p>請用表格輸出：欄位為「標題、內文（80字內）、建議 hashtag」。（格式）</p>
+<h3>三個立即見效的進階技巧</h3>
+<ul>
+<li>給範例（Few-shot）：「參考以下我寫過的兩篇貼文風格……」，AI 會模仿你的風格。</li>
+<li>要求分步思考：「請先列出大綱給我確認，再撰寫全文」，避免一次產出偏離需求的長文。</li>
+<li>迭代而非重來：結果不滿意時，具體指出要改哪裡，比重新問一次更有效。</li>
+</ul>
+<p>💡 教學提示｜課堂練習（10 分鐘）</p>
+<p>請學員各自用 CRTF 框架改寫「幫我規劃旅遊」這句弱提示詞，兩人一組互相比較 AI 的輸出差異，最後抽 2–3 組上台分享。</p>
+<h1>第四章　ChatGPT 應用方式（場景實戰）</h1>
+<p>本章每一節皆為獨立教學模組，包含：適用情境 → 操作步驟 → 示範提示詞 → 練習題，講師可依課程主題挑選組合。</p>
+<h2>4.1 文書寫作與改寫</h2>
+<p>適用：Email、公告、報告、簡報講稿、社群文案。</p>
+<ul>
+<li>用 CRTF 框架下第一版指令（角色＋任務＋脈絡＋格式）。</li>
+<li>先要「大綱」或「三個版本的開頭」，選定方向再展開全文。</li>
+<li>針對段落逐一修改：「第二段太長，濃縮成三句」。</li>
+<li>最後要求「用挑剔主管的角度檢查這篇文章的問題」，做自我審稿。</li>
+</ul>
+<p>示範提示詞：「你是企業內部溝通專家。請將以下公告改寫得更精簡友善，保留所有日期與規定，控制在 200 字內，並列出你修改了哪些地方：（貼上原文）」</p>
+<h2>4.2 長文件摘要與資料整理</h2>
+<p>適用：會議記錄、合約、研究報告、多份 PDF 的比較。</p>
+<ul>
+<li>點輸入框旁的「＋」上傳檔案（PDF／Word／Excel 皆可，可一次多份）。</li>
+<li>指定摘要的「視角與用途」：「用要向老闆匯報的角度，整理三大重點與待決事項」。</li>
+<li>要求結構化輸出：表格、條列、或「風險／機會」兩欄對照。</li>
+<li>針對細節追問：「第 12 頁提到的違約條款，白話解釋給我聽」。</li>
+</ul>
+<p>💡 教學提示｜重要觀念</p>
+<p>摘要品質取決於「你告訴它這份摘要要給誰看、拿來做什麼」。同一份文件，給法務看與給業務看的摘要應該完全不同。</p>
+<h2>4.3 翻譯與跨語言溝通</h2>
+<ul>
+<li>不要只說「翻譯」，要說明文體：「翻成商務英文 Email，語氣專業但友善」。</li>
+<li>要求雙重輸出：「附上逐句對照，並標註你調整語氣的地方」。</li>
+<li>反向驗證：請它把譯文再翻回中文，檢查意思是否走樣。</li>
+</ul>
+<h2>4.4 學習輔助（家教模式）</h2>
+<ul>
+<li>設定教學角色：「你是有耐心的高中數學家教，用蘇格拉底式提問引導我，不要直接給答案」。</li>
+<li>讓 AI 出題→學生作答→AI 講評，形成練習循環。</li>
+<li>要求「用三種不同比喻解釋這個概念」，找到最適合自己的理解方式。</li>
+<li>結束時要求產出「本次學習重點卡＋5 題複習題」。</li>
+</ul>
+<h2>4.5 資料分析與 Excel 協作</h2>
+<ul>
+<li>上傳 Excel／CSV 檔，先問：「這份資料有哪些欄位？品質有什麼問題？」</li>
+<li>下分析指令：「依月份統計各分店營收，找出成長最快與衰退最多的分店」。</li>
+<li>要求視覺化：「畫出趨勢折線圖」，並請它解讀圖表意義。</li>
+<li>請它產出可直接貼回 Excel 的公式或整理後的新檔案。</li>
+</ul>
+<p>⚠ 注意｜資安提醒</p>
+<p>上傳公司資料前，先確認公司政策；可先去識別化（刪除姓名、客戶名稱），並到「設定 → 資料控制」關閉「用我的內容改善模型」。</p>
+<h2>4.6 深度研究（Deep Research）</h2>
+<p>適用：市場調查、競品分析、政策研析、論文文獻初探。</p>
+<ul>
+<li>在輸入框的工具選單中選擇「Deep Research／深度研究」。</li>
+<li>像交辦研究員一樣下指令：說明研究問題、範圍、時間區間、希望的報告結構。</li>
+<li>AI 可能反問釐清問題，認真回答可大幅提升品質。</li>
+<li>等待數分鐘後取得附引用來源的完整報告，逐一抽查關鍵引用是否屬實。</li>
+</ul>
+<h2>4.7 課堂綜合練習題庫</h2>
+<ul>
+<li>【初級】用 CRTF 框架，請 AI 幫你寫一封活動邀請函，並迭代修改兩次。</li>
+<li>【中級】上傳一份 3 頁以上的 PDF，產出「給主管的 1 頁摘要」與「給同事的執行清單」兩個版本。</li>
+<li>【中級】上傳範例銷售資料，完成一次「統計→圖表→洞察→建議」的完整分析。</li>
+<li>【進階】用 Deep Research 完成一份競品分析，並驗證其中三個引用來源。</li>
+</ul>
+<h1>第五章　Codex 詳解</h1>
+<h2>5.1 什麼是 Codex</h2>
+<p>Codex 是 OpenAI 的 AI 程式代理（AI Coding Agent）。它與 ChatGPT 最大的差別在於：ChatGPT「回答」你的程式問題，而 Codex 會「動手」完成整個開發任務——讀懂你的專案、修改檔案、執行測試、修 Bug，甚至直接開出 Pull Request 供你審查。</p>
+<h3>名詞演變（授課時務必先釐清）</h3>
+<ul>
+<li>2021 年的 Codex：一個把自然語言轉成程式碼的「模型」，是 GitHub Copilot 早期的基礎，後來退役。</li>
+<li>2025 年起的 Codex：重新以「代理產品」之姿登場——2025 年 4 月推出開源的 Codex CLI，5 月推出雲端代理，之後陸續加入 IDE 擴充、macOS 桌面 App 與手機支援。現在講 Codex，指的是這一整套產品家族。</li>
+</ul>
+<h2>5.2 Codex 產品家族</h2>
+<table><thead><tr><th>介面</th><th>在哪裡使用</th><th>適合情境</th></tr></thead><tbody><tr><td>Codex CLI</td><td>終端機（macOS / Windows / Linux）</td><td>本機開發主力；開源、以 Rust 打造，可讀寫並執行所選目錄的程式碼</td></tr><tr><td>IDE 擴充</td><td>VS Code 等編輯器</td><td>邊寫程式邊協作，即時預覽變更</td></tr><tr><td>Codex App（桌面）</td><td>macOS 應用程式</td><td>同時管理多個代理並行工作、內建 worktrees 隔離變更</td></tr><tr><td>Codex Cloud（雲端）</td><td>ChatGPT 側邊欄 / 網頁</td><td>把任務丟到雲端沙箱並行執行，完成後回報並可發 PR</td></tr><tr><td>行動裝置</td><td>ChatGPT 手機 App</td><td>外出時監控、引導、批准長時間執行的任務</td></tr></tbody></table>
+<h2>5.3 五個核心概念</h2>
+<ul>
+<li>代理迴圈（Agent Loop）：Codex 的工作方式是「思考 → 呼叫工具（讀檔、改檔、跑指令）→ 看結果 → 再思考」的循環，直到任務完成才回報。這是它與一問一答式聊天最根本的差異。</li>
+<li>沙箱（Sandbox）：預設情況下，Codex 只能在你指定的資料夾內讀寫，需要網路或更高權限時會先徵求同意，這是它的安全底線。</li>
+<li>審批模式（Approval Modes）：你可以決定 Codex 的自主程度——從「每個動作都要我批准」到「放手去做」。教學上建議新手從保守模式開始。</li>
+<li>AGENTS.md：放在專案根目錄的說明檔，等於「給 AI 看的員工手冊」，寫入專案慣例、測試指令、程式風格，Codex 每次都會先讀它。</li>
+<li>Skills 與 Automations：Skills 是可重複使用的技能包（指令＋資源＋腳本），讓 Codex 依團隊標準完成任務；Automations 則讓 Codex 依排程主動工作，例如每天自動分類 Issue、監控 CI 失敗。</li>
+</ul>
+<h2>5.4 如何取得 Codex</h2>
+<p>Codex 內含於 ChatGPT 的付費方案（Plus、Pro、Business、Edu、Enterprise；OpenAI 曾限時開放 Free/Go 體驗），也可改用 API 金鑰按用量計費。同一個 ChatGPT 帳號可在 CLI、IDE、App、雲端之間共用登入與使用額度。</p>
+<p>💡 教學提示｜非工程師也能學嗎？</p>
+<p>可以。Codex 正從「寫程式的代理」演變為「用程式幫你完成電腦工作的代理」，例如整理檔案、彙整資訊、產出文件。不過本教材第六、七章仍以開發情境為主軸，非技術班級可只教 5.1–5.3 的觀念與 7.5 的輕量應用。</p>
+<h1>第六章　Codex 入門操作（逐步教學）</h1>
+<h2>6.1 前置準備</h2>
+<ul>
+<li>一個 ChatGPT 付費帳號（或 OpenAI API 金鑰）。</li>
+<li>已安裝 Node.js 與 npm（用 npm 安裝 CLI 最方便；macOS 亦可用 Homebrew）。</li>
+<li>Windows 使用者：可在 PowerShell 原生執行（含 Windows 沙箱），需要 Linux 環境時建議安裝 WSL2。</li>
+<li>一個練習用的程式專案資料夾（課堂可提供小型範例專案，避免學員用公司正式程式碼練習）。</li>
+</ul>
+<h2>6.2 安裝與登入 Codex CLI</h2>
+<ul>
+<li>開啟終端機，執行安裝指令：</li>
+</ul>
+<p>npm install -g @openai/codex</p>
+<p># macOS 也可以：brew install codex</p>
+<ul>
+<li>進入你的專案資料夾：</li>
+</ul>
+<p>cd 你的專案路徑</p>
+<ul>
+<li>輸入 codex 啟動。首次執行會要求登入：選擇以 ChatGPT 帳號登入（推薦），瀏覽器會自動開啟授權頁面；或改用 API 金鑰。</li>
+<li>登入成功後會進入互動介面，看到輸入提示即代表安裝完成。</li>
+<li>日後升級：重新執行 npm install -g @openai/codex 即可更新到最新版。</li>
+</ul>
+<h2>6.3 第一個任務：讓 Codex 認識專案</h2>
+<ul>
+<li>在 Codex 中輸入第一個問題（純閱讀、零風險）：</li>
+</ul>
+<p>請解釋這個專案的整體架構，以及主要進入點在哪個檔案。</p>
+<ul>
+<li>觀察 Codex 如何自己讀取檔案、彙整結論——這就是代理迴圈的實際樣貌。</li>
+<li>接著給一個小型修改任務：</li>
+</ul>
+<p>請在 README.md 加上一節「如何在本機啟動」的說明，</p>
+<p>內容依照專案實際的啟動方式撰寫。</p>
+<ul>
+<li>Codex 會顯示變更差異（diff）並依審批模式徵求同意；確認後變更才會寫入。</li>
+<li>用 git diff 或編輯器複查它改了什麼——「AI 動手、人類把關」是全程不變的原則。</li>
+</ul>
+<h2>6.4 審批模式與常用指令</h2>
+<table><thead><tr><th>自主程度</th><th>行為</th><th>建議對象</th></tr></thead><tbody><tr><td>唯讀 / 建議</td><td>只讀取與提出建議，不動任何檔案</td><td>第一次上課、檢視陌生專案</td></tr><tr><td>自動編輯（預設區間）</td><td>可在工作目錄內編輯檔案，執行指令前需批准</td><td>日常開發（推薦起點）</td></tr><tr><td>完全自主（full access）</td><td>可自由執行指令與存取網路</td><td>熟練者、拋棄式沙箱環境；課堂上不建議示範</td></tr></tbody></table>
+<h3>必教的斜線指令與操作</h3>
+<ul>
+<li>/model：切換模型（例如在快速與深度推理的 codex 模型間切換）。</li>
+<li>/review：啟動程式碼審查——可審查未提交的變更、與主分支的差異、或指定的 commit。</li>
+<li>/personality：切換代理的溝通風格（簡潔務實 vs. 詳細友善）。</li>
+<li>codex &amp;quot;單句任務&amp;quot;：非互動模式，適合快速問答與寫進自動化腳本。</li>
+<li>Ctrl+G：把長提示詞丟到你慣用的文字編輯器撰寫。</li>
+</ul>
+<h2>6.5 撰寫 AGENTS.md（決定 Codex 好不好用的關鍵）</h2>
+<ul>
+<li>在專案根目錄建立 AGENTS.md 檔案。</li>
+<li>寫入三類資訊：專案簡介與架構、開發規範（語言、風格、命名）、常用指令（如何跑測試、如何啟動）。</li>
+<li>個人層級的偏好可另外寫在 ~/.codex/AGENTS.md，Codex 會由上而下合併多層設定。</li>
+<li>每次 Codex 行為不符期待時，回頭把規則補進 AGENTS.md——它會愈用愈順手。</li>
+</ul>
+<p># AGENTS.md 範例</p>
+<p>## 專案簡介</p>
+<p>這是一個以 Python + FastAPI 開發的訂單管理 API。</p>
+<p>## 開發規範</p>
+<p>- 全部使用繁體中文註解；函式需有型別註記</p>
+<p>- 修改程式後必須執行測試，全數通過才算完成</p>
+<p>## 常用指令</p>
+<p>- 執行測試：pytest</p>
+<p>- 啟動服務：uvicorn app.main:app --reload</p>
+<p>💡 教學提示｜課堂重點</p>
+<p>AGENTS.md 是 Codex 教學裡投資報酬率最高的一節。可安排練習：讓學員先不寫 AGENTS.md 派一個任務，再寫好後派同樣任務，比較輸出品質差異。</p>
+<h1>第七章　Codex 應用方式（實戰流程）</h1>
+<h2>7.1 修復 Bug 的標準流程</h2>
+<ul>
+<li>描述症狀而非猜測原因：「使用者回報結帳時金額計算錯誤，重現步驟是……請先找出原因再修復」。</li>
+<li>要求先報告診斷：「先告訴我你認為的根本原因與修復計畫，經我同意再動手」。</li>
+<li>同意後讓它修復，並要求「同時新增一個能重現此 Bug 的測試案例」。</li>
+<li>檢視 diff、跑完整測試、確認後才提交。</li>
+</ul>
+<h2>7.2 開發新功能</h2>
+<ul>
+<li>把需求寫成明確規格（輸入、輸出、邊界條件、不要做什麼）。</li>
+<li>大功能先要「實作計畫」：拆成哪些步驟、會動到哪些檔案。</li>
+<li>分批執行、分批審查，一次只合併一個可驗證的小段落。</li>
+<li>完成後用 /review 讓另一個 Codex 代理審查程式碼，再由人類做最終把關。</li>
+</ul>
+<h2>7.3 程式碼審查與重構</h2>
+<ul>
+<li>審查未提交變更：提交前輸入 /review，選「未提交的變更」，取得高優先度的問題清單。</li>
+<li>客製審查重點：可下自訂指令，例如「專注檢查資安漏洞與效能問題」。</li>
+<li>遺留程式碼重構：先要求「只解釋、不修改」建立理解，再小步重構並以測試護航。</li>
+</ul>
+<h2>7.4 雲端代理與並行工作</h2>
+<ul>
+<li>在 ChatGPT 側邊欄進入 Codex（或使用 Codex App / codex cloud），連結你的 GitHub 儲存庫。</li>
+<li>把多個「範圍明確的小任務」同時派給多個代理並行處理，每個任務都在獨立的雲端沙箱執行。</li>
+<li>任務完成後逐一審查結果，滿意的讓它直接建立 Pull Request。</li>
+<li>進階：設定 Automations，讓 Codex 依排程自動處理例行工作（Issue 分類、CI 失敗摘要、每日進度簡報）。</li>
+</ul>
+<p>💡 教學提示｜派工心法</p>
+<p>官方與社群的一致經驗：把任務切小、範圍講清楚，多個小任務並行的成果，遠勝一個模糊的大任務。這也是課堂上最值得反覆強調的工作習慣。</p>
+<h2>7.5 非工程場景的輕量應用</h2>
+<ul>
+<li>整理資料夾：「把這個資料夾裡的發票 PDF 依年月重新命名並歸檔」。</li>
+<li>批次處理：「把這 50 張圖片全部轉成 1080p 的 JPG」。</li>
+<li>產出文件：「讀完這個專案後，幫我寫一份給新同事的上手指南」。</li>
+<li>搭配 Skills：把公司常用流程（如產出週報格式）做成技能包，全團隊共用。</li>
+</ul>
+<h1>第八章　進階提示詞工程（ChatGPT 與 Codex 通用）</h1>
+<h2>8.1 六個進階原則</h2>
+<ul>
+<li>先計畫後執行：複雜任務一律先要大綱／計畫，確認後再產出，成本最低的品質保險。</li>
+<li>明確的驗收標準：告訴 AI「怎樣算完成」——字數、格式、測試通過、涵蓋哪些要點。</li>
+<li>負面清單：明說不要什麼：「不要用條列式」「不要修改設定檔」。</li>
+<li>提供範例與素材：好範例勝過千言描述；給 Codex 附上截圖或設計稿效果更佳。</li>
+<li>自我檢查：產出後要求「列出這份成果最可能出錯的三個地方」。</li>
+<li>拆解大任務：超過一個段落講不清楚的需求，就拆成多輪對話或多個代理任務。</li>
+</ul>
+<h2>8.2 兩者提示詞的差異</h2>
+<table><thead><tr><th>面向</th><th>ChatGPT（對話助理）</th><th>Codex（執行代理）</th></tr></thead><tbody><tr><td>重心</td><td>描述你要的「內容與風格」</td><td>描述你要的「結果與驗收條件」</td></tr><tr><td>脈絡來源</td><td>你貼上或上傳的資料</td><td>它自己讀專案＋AGENTS.md</td></tr><tr><td>修正方式</td><td>對話中迭代修改</td><td>審查 diff、退回重做、補規則進 AGENTS.md</td></tr><tr><td>風險控管</td><td>自行查證內容正確性</td><td>審批模式＋測試＋版本控制</td></tr></tbody></table>
+<h1>第九章　課程設計建議（講師專用）</h1>
+<h2>9.1 模組對照表</h2>
+<table><thead><tr><th>課程類型</th><th>建議時數</th><th>取用章節</th><th>重點練習</th></tr></thead><tbody><tr><td>AI 入門體驗班（一般大眾）</td><td>3 小時</td><td>1、2、3、4.1–4.3</td><td>CRTF 改寫練習、請假信實作</td></tr><tr><td>職場效率班（企業內訓）</td><td>6 小時</td><td>1–4、8、10</td><td>文件摘要雙版本、資料分析全流程</td></tr><tr><td>數據應用班</td><td>3–6 小時</td><td>2、3、4.5、4.6、8</td><td>Excel 分析、Deep Research 查證</td></tr><tr><td>開發者 Codex 實戰班</td><td>6–12 小時</td><td>1、5、6、7、8、10</td><td>AGENTS.md 前後對照、Bug 修復流程、/review</td></tr><tr><td>主管決策概論</td><td>2 小時</td><td>1、2、5、9、10</td><td>工具選型討論、導入風險盤點</td></tr></tbody></table>
+<h2>9.2 授課通用原則</h2>
+<ul>
+<li>每 20 分鐘講述搭配一次動手操作；AI 課程「看會」與「做會」差距極大。</li>
+<li>所有示範先在課前重跑一次——模型更新快，介面與輸出可能與講義不同，請以「原則不變、畫面會變」的心態教學。</li>
+<li>準備去識別化的範例檔案（假資料的 Excel、範例專案），嚴禁學員上傳真實客戶資料練習。</li>
+<li>每堂課保留 10 分鐘「翻車展示」：故意示範 AI 幻覺或失敗案例，建立正確的信任程度。</li>
+</ul>
+<h2>9.3 評量方式建議</h2>
+<ul>
+<li>實作評量：給定情境，評分學員的提示詞品質（是否含角色、任務、脈絡、格式、驗收標準）。</li>
+<li>成果評量：繳交「原始需求 → 提示詞 → AI 輸出 → 人工修正」的完整過程紀錄，而非只看最終成品。</li>
+<li>Codex 班：以 Git 紀錄評量——是否小步提交、是否有測試、是否留下 AGENTS.md。</li>
+</ul>
+<h1>第十章　常見問題與風險守則</h1>
+<h2>10.1 常見問題 FAQ</h2>
+<p>Q1：ChatGPT 的回答可以直接相信嗎？</p>
+<p>不行。它可能產生幻覺。原則：創意類內容放心用、事實類內容必查證、數字與法條一律核對原始來源。</p>
+<p>Q2：免費版夠用嗎？</p>
+<p>學習與輕度使用夠用。當你頻繁碰到額度上限、需要深度研究或 Codex 時，再依需求升級。</p>
+<p>Q3：公司資料能上傳嗎？</p>
+<p>先確認公司政策。個人帳號建議關閉「以內容改善模型」；企業建議採用 Business／Enterprise 方案，資料保護與管理權限較完整。</p>
+<p>Q4：Codex 會不會弄壞我的程式？</p>
+<p>防線有四層：沙箱限制範圍、審批模式控制權限、Git 版本控制可隨時還原、人工審查 diff。守住這四層，風險非常可控。</p>
+<p>Q5：AI 產出的內容有著作權問題嗎？</p>
+<p>各國法律仍在發展中。實務守則：把 AI 產出當草稿、加入實質人工創作、重要商用內容諮詢法務，並遵守單位的 AI 使用規範與揭露要求。</p>
+<p>Q6：學生用 AI 寫作業算作弊嗎？</p>
+<p>依各校規範而定。教學上建議引導「AI 當家教與草稿工具、學習成果自己負責」的使用倫理，並要求註明 AI 使用方式。</p>
+<h2>10.2 十條安全守則（可印成教室海報）</h2>
+<ul>
+<li>1. 機密與個資不上傳；要用就先去識別化。</li>
+<li>2. 事實、數字、法條、醫療資訊——必查證。</li>
+<li>3. AI 是副駕駛，最終責任在你。</li>
+<li>4. 重要輸出寄出／發布前，人工完整讀一遍。</li>
+<li>5. Codex 從保守審批模式開始，熟練再放權。</li>
+<li>6. 沒有版本控制（Git）的專案，不要讓代理動手。</li>
+<li>7. 代理跑完的程式碼，必看 diff、必跑測試。</li>
+<li>8. 提示詞裡不要放帳號密碼與金鑰。</li>
+<li>9. 遵守公司與學校的 AI 使用規範，該揭露就揭露。</li>
+<li>10. 工具月月更新——訂閱官方公告，教材定期回訓。</li>
+</ul>
+<h1>附錄A　術語速查表</h1>
+<table><thead><tr><th>術語</th><th>說明</th></tr></thead><tbody><tr><td>LLM 大型語言模型</td><td>以海量文字訓練、能理解與生成語言的 AI 模型</td></tr><tr><td>Prompt 提示詞</td><td>你給 AI 的指令與描述</td></tr><tr><td>Token 詞元</td><td>模型處理文字的最小單位，也用於計算額度與費用</td></tr><tr><td>Context Window 上下文視窗</td><td>模型一次能看見的對話／資料總量</td></tr><tr><td>Hallucination 幻覺</td><td>AI 自信地產生錯誤內容的現象</td></tr><tr><td>Agent 代理</td><td>能自主使用工具、多步驟完成任務的 AI</td></tr><tr><td>Agent Loop 代理迴圈</td><td>思考→用工具→看結果→再思考的工作循環</td></tr><tr><td>Sandbox 沙箱</td><td>限制 AI 只能在指定範圍內操作的安全機制</td></tr><tr><td>AGENTS.md</td><td>放在專案中、給 AI 閱讀的規範說明檔</td></tr><tr><td>Diff 差異</td><td>程式碼修改前後的對照，審查代理成果的核心</td></tr><tr><td>PR（Pull Request）</td><td>請求把修改合併進主程式的正式流程</td></tr><tr><td>MCP</td><td>Model Context Protocol，讓 AI 連接外部工具與資料的協定</td></tr><tr><td>Deep Research 深度研究</td><td>AI 自動多來源搜尋並產出附引用報告的功能</td></tr><tr><td>Skills 技能包</td><td>把指令、資源、腳本打包成可重複使用的能力模組</td></tr></tbody></table>
+<h1>附錄B　Codex CLI 指令速查</h1>
+<p>npm install -g @openai/codex   # 安裝 / 更新</p>
+<p>codex                          # 在專案目錄啟動互動模式</p>
+<p>codex &amp;quot;你的單句任務&amp;quot;           # 非互動模式，適合腳本</p>
+<p>/model      切換模型</p>
+<p>/review     程式碼審查（未提交變更 / 分支差異 / 指定 commit）</p>
+<p>/personality 切換溝通風格</p>
+<p>Ctrl+G      用外部編輯器撰寫長提示詞</p>
+<p>設定檔位置：~/.codex/config.toml</p>
+<p>專案規範檔：AGENTS.md（專案根目錄）、~/.codex/AGENTS.md（個人）</p>
+<p>版本資訊：本教材依 2026 年 7 月之公開資訊編寫。ChatGPT 與 Codex 更新頻繁，授課前請至 openai.com 與官方開發者文件確認最新功能、模型與方案。</p>
+</article>
+<footer>
+整理:王少宇|花蓮光復鄉・在地工作者 × 教人把 AI 當助理<br>
+<a href="https://www.facebook.com/wang.shao.yu.425898" target="_blank">Facebook</a> ・
+<a href="../index.html">回教學館首頁</a> ・
+<a href="../quiz.html">測驗:你適合哪個 AI 助理?</a>
+</footer>
+</div>
+</body>
+</html>

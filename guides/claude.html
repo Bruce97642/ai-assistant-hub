@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude 文書作業完全應用指南</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F6F2;
+  --card:#FFFFFF;
+  --ink:#22304A;
+  --ink-soft:#4A5670;
+  --line:#D9DDD3;
+  --stamp:#B3362B;
+  --tab-web:#35558A;
+  --tab-chrome:#3E6B5E;
+  --tab-m365:#A07C1E;
+  --tab-cowork:#5D5286;
+  --tab-code:#54616E;
+  --tab-safe:#8A4A35;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Noto Sans TC',"PingFang TC","Microsoft JhengHei",sans-serif;
+  font-size:16px;line-height:1.85;
+  background-image:repeating-linear-gradient(to bottom,transparent 0 31px,rgba(34,48,74,.045) 31px 32px);
+}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px 80px;}
+/* ---------- 封面 ---------- */
+header.cover{padding:56px 0 36px;border-bottom:3px double var(--ink);}
+.cover .kicker{
+  display:inline-block;font-size:13px;letter-spacing:.35em;
+  border:1px solid var(--ink);padding:4px 12px 4px 16px;margin-bottom:20px;
+}
+.cover h1{
+  font-family:'Noto Serif TC',serif;font-weight:900;
+  font-size:clamp(30px,6.5vw,52px);line-height:1.3;letter-spacing:.04em;
+}
+.cover h1 em{font-style:normal;color:var(--tab-web);}
+.cover p.lede{margin-top:18px;max-width:620px;color:var(--ink-soft);font-size:15.5px;}
+.stamp{
+  display:inline-block;margin-top:22px;
+  font-family:'Noto Serif TC',serif;font-weight:700;font-size:14px;letter-spacing:.25em;
+  color:var(--stamp);border:2.5px solid var(--stamp);border-radius:6px;
+  padding:6px 14px 6px 18px;transform:rotate(-2.5deg);
+}
+/* ---------- 色籤目錄 ---------- */
+nav.tabs{margin:34px 0 10px;}
+nav.tabs .label{font-size:12px;letter-spacing:.3em;color:var(--ink-soft);margin-bottom:10px;}
+nav.tabs ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;}
+nav.tabs a{
+  display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);
+  background:var(--card);border:1px solid var(--line);border-left-width:8px;
+  padding:8px 14px;font-size:14px;font-weight:500;border-radius:0 4px 4px 0;
+}
+nav.tabs a:hover,nav.tabs a:focus-visible{background:#EFF1EA;outline:2px solid var(--ink);outline-offset:1px;}
+nav.tabs a small{color:var(--ink-soft);font-weight:400;}
+/* ---------- 卷宗區塊 ---------- */
+section.dossier{margin-top:64px;}
+.dossier-head{position:relative;padding-left:18px;margin-bottom:8px;}
+.dossier-head::before{
+  content:"";position:absolute;left:0;top:6px;bottom:6px;width:8px;
+  background:var(--tabc,var(--ink));border-radius:2px;
+}
+.dossier-head .no{
+  font-family:'Noto Serif TC',serif;font-size:13px;letter-spacing:.3em;color:var(--tabc,var(--ink));
+}
+.dossier-head h2{
+  font-family:'Noto Serif TC',serif;font-weight:900;font-size:clamp(24px,4.5vw,32px);
+  line-height:1.35;letter-spacing:.03em;
+}
+.dossier-head .sub{color:var(--ink-soft);font-size:14.5px;margin-top:4px;}
+.dossier .body{border-top:1px solid var(--line);margin-top:14px;padding-top:20px;}
+.dossier p{margin-bottom:14px;}
+.dossier h3{
+  font-family:'Noto Serif TC',serif;font-weight:700;font-size:19px;margin:30px 0 12px;
+  display:flex;align-items:center;gap:10px;
+}
+.dossier h3::before{content:"▍";color:var(--tabc,var(--ink));font-size:16px;}
+/* ---------- 卡片 ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:16px 0;}
+.card{
+  background:var(--card);border:1px solid var(--line);border-top:3px solid var(--tabc,var(--ink));
+  padding:16px 16px 14px;border-radius:0 0 6px 6px;
+}
+.card b.t{display:block;font-size:15.5px;margin-bottom:6px;}
+.card p{font-size:14px;color:var(--ink-soft);margin:0;line-height:1.75;}
+/* ---------- 流程圖解 ---------- */
+.flow{list-style:none;margin:18px 0 8px;counter-reset:step;}
+.flow li{
+  counter-increment:step;position:relative;
+  background:var(--card);border:1px solid var(--line);border-radius:6px;
+  padding:14px 16px 14px 60px;margin-bottom:0;
+}
+.flow li::before{
+  content:counter(step,decimal-leading-zero);
+  position:absolute;left:14px;top:14px;
+  font-family:'Noto Serif TC',serif;font-weight:900;font-size:17px;
+  color:#fff;background:var(--tabc,var(--ink));
+  width:34px;height:34px;border-radius:4px;display:flex;align-items:center;justify-content:center;
+}
+.flow li b{display:block;font-size:15.5px;margin-bottom:2px;}
+.flow li span{display:block;font-size:14px;color:var(--ink-soft);line-height:1.75;}
+.flow li + li{margin-top:26px;}
+.flow li + li::after{
+  content:"▼";position:absolute;top:-23px;left:26px;
+  color:var(--tabc,var(--ink));font-size:13px;
+}
+/* ---------- 情境流水線(橫向工作流) ---------- */
+.pipeline{display:flex;flex-direction:column;gap:0;margin:16px 0;}
+.pipeline .node{
+  background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px 14px;
+  position:relative;
+}
+.pipeline .node b{font-size:14.5px;}
+.pipeline .node span{display:block;font-size:13.5px;color:var(--ink-soft);line-height:1.7;}
+.pipeline .node .app{
+  display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.1em;color:#fff;
+  background:var(--tabc,var(--ink));padding:2px 8px;border-radius:3px;margin-bottom:6px;
+}
+.pipeline .node + .node{margin-top:24px;}
+.pipeline .node + .node::before{
+  content:"↓ 脈絡自動延續";position:absolute;top:-22px;left:12px;
+  font-size:11.5px;color:var(--tabc,var(--ink));letter-spacing:.08em;
+}
+/* ---------- 表格 ---------- */
+.tablewrap{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:6px;background:var(--card);}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px;}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);line-height:1.7;}
+th{
+  font-family:'Noto Serif TC',serif;font-size:13.5px;letter-spacing:.08em;
+  background:#EDEFE8;white-space:nowrap;
+}
+tr:last-child td{border-bottom:none;}
+td .tag{
+  display:inline-block;font-size:12px;font-weight:700;color:#fff;border-radius:3px;
+  padding:1px 8px;margin:1px 4px 1px 0;white-space:nowrap;
+}
+.tg-web{background:var(--tab-web);} .tg-chrome{background:var(--tab-chrome);}
+.tg-m365{background:var(--tab-m365);} .tg-cowork{background:var(--tab-cowork);}
+.tg-code{background:var(--tab-code);}
+/* ---------- 提示語範本 ---------- */
+.prompt{
+  background:#FBFBF8;border:1px dashed #B9BFAF;border-left:4px solid var(--tabc,var(--ink));
+  border-radius:0 6px 6px 0;padding:12px 16px;margin:12px 0;font-size:14.5px;
+}
+.prompt .plabel{
+  font-size:11.5px;font-weight:700;letter-spacing:.2em;color:var(--tabc,var(--ink));
+  display:block;margin-bottom:4px;
+}
+/* ---------- 提醒框 ---------- */
+.note{
+  border:1.5px solid var(--stamp);border-radius:6px;background:#FDF6F4;
+  padding:14px 16px;margin:18px 0;font-size:14.5px;
+}
+.note b.nt{color:var(--stamp);letter-spacing:.15em;display:block;margin-bottom:4px;font-size:13.5px;}
+.tip{
+  border:1px solid var(--line);border-radius:6px;background:#F2F4EC;
+  padding:14px 16px;margin:18px 0;font-size:14.5px;
+}
+.tip b.nt{letter-spacing:.15em;display:block;margin-bottom:4px;font-size:13.5px;color:var(--tab-chrome);}
+/* ---------- 生態系總覽圖 ---------- */
+.eco{margin:24px 0 6px;}
+.eco .hub{
+  text-align:center;background:var(--ink);color:#fff;border-radius:8px;
+  padding:16px 14px;font-family:'Noto Serif TC',serif;
+}
+.eco .hub b{font-size:19px;letter-spacing:.15em;display:block;}
+.eco .hub span{font-size:12.5px;opacity:.82;letter-spacing:.05em;font-family:'Noto Sans TC',sans-serif;}
+.eco .spokes{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:28px;position:relative;}
+.eco .spokes::before{
+  content:"▲ 同一個 Claude 帳號.六種工作介面 ▲";
+  position:absolute;top:-24px;left:50%;transform:translateX(-50%);
+  font-size:11.5px;letter-spacing:.15em;color:var(--ink-soft);white-space:nowrap;
+}
+.eco .spoke{
+  background:var(--card);border:1px solid var(--line);border-top:4px solid var(--c,var(--ink));
+  border-radius:0 0 6px 6px;padding:12px;text-align:center;
+}
+.eco .spoke b{display:block;font-size:14.5px;}
+.eco .spoke span{font-size:12px;color:var(--ink-soft);line-height:1.6;display:block;}
+footer{
+  margin-top:70px;border-top:3px double var(--ink);padding-top:18px;
+  font-size:13px;color:var(--ink-soft);
+}
+@media (max-width:560px){
+  body{font-size:15.5px;}
+  .flow li{padding-left:54px;}
+  .flow li::before{width:30px;height:30px;font-size:15px;left:12px;}
+}
+</style>
+</head>
+<body>
+<div style="background:#B3362B;color:#fff;padding:10px 16px;font-size:14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99;font-family:'Noto Sans TC',sans-serif;">
+<a href="../index.html" style="color:#fff;text-decoration:none;font-weight:700;">🏠 AI 助理教學館</a>
+<a href="../quiz.html" style="color:#fff;text-decoration:none;font-weight:700;">測驗:你適合哪個 AI 助理?</a>
+</div>
+<div class="wrap">
+
+<!-- ================= 封面 ================= -->
+<header class="cover">
+  <span class="kicker">辦 公 應 用 手 冊</span>
+  <h1>Claude<br>文書作業<em>完全應用指南</em></h1>
+  <p class="lede">從網頁對話、Chrome 瀏覽器外掛、Microsoft 365 增益集、Cowork 桌面代理到 Claude Code——一份給每天與文件、表格、簡報、郵件搏鬥的你,一看就會的完整圖解手冊。</p>
+  <span class="stamp">一看就會.即學即用</span>
+</header>
+
+<!-- ================= 色籤目錄 ================= -->
+<nav class="tabs" aria-label="目錄">
+  <div class="label">色 籤 目 錄</div>
+  <ul>
+    <li><a href="#map" style="border-left-color:var(--ink)">總覽<small>|生態系地圖</small></a></li>
+    <li><a href="#web" style="border-left-color:var(--tab-web)">卷宗一<small>|網頁與 App</small></a></li>
+    <li><a href="#chrome" style="border-left-color:var(--tab-chrome)">卷宗二<small>|Chrome 外掛</small></a></li>
+    <li><a href="#m365" style="border-left-color:var(--tab-m365)">卷宗三<small>|Microsoft 365</small></a></li>
+    <li><a href="#cowork" style="border-left-color:var(--tab-cowork)">卷宗四<small>|Cowork</small></a></li>
+    <li><a href="#code" style="border-left-color:var(--tab-code)">卷宗五<small>|Claude Code</small></a></li>
+    <li><a href="#jobs" style="border-left-color:var(--tab-web)">附錄一<small>|職業別效益</small></a></li>
+    <li><a href="#prompts" style="border-left-color:var(--tab-cowork)">附錄二<small>|提示語範本</small></a></li>
+    <li><a href="#safety" style="border-left-color:var(--tab-safe)">附錄三<small>|安全守則</small></a></li>
+  </ul>
+</nav>
+
+<!-- ================= 總覽 ================= -->
+<section class="dossier" id="map" style="--tabc:var(--ink)">
+  <div class="dossier-head">
+    <div class="no">總 覽</div>
+    <h2>Claude 文書生態系地圖</h2>
+    <div class="sub">同一個大腦,六種進入你工作現場的方式</div>
+  </div>
+  <div class="body">
+    <p>Claude 不只是一個聊天視窗。針對文書工作,Anthropic 已經把 Claude 佈署到你實際工作的每一個現場:瀏覽器裡、Word 與 Excel 裡、你的電腦桌面上,甚至能替你排程、自動重複執行。<b>核心觀念只有一個:你描述「想要的結果」,Claude 負責中間所有繁瑣步驟。</b></p>
+    <div class="eco">
+      <div class="hub"><b>C L A U D E</b><span>同一個帳號.同一套模型.脈絡可互通</span></div>
+      <div class="spokes">
+        <div class="spoke" style="--c:var(--tab-web)"><b>網頁/App</b><span>對話、上傳分析、直接生成 Word・Excel・PPT・PDF</span></div>
+        <div class="spoke" style="--c:var(--tab-chrome)"><b>Chrome 外掛</b><span>在瀏覽器裡點擊、填表、擷取資料、跑排程</span></div>
+        <div class="spoke" style="--c:var(--tab-m365)"><b>Microsoft 365</b><span>Excel・PPT・Word・Outlook 側邊欄,跨檔案接力</span></div>
+        <div class="spoke" style="--c:var(--tab-cowork)"><b>Cowork</b><span>桌面代理:直接讀寫你電腦裡的資料夾</span></div>
+        <div class="spoke" style="--c:var(--tab-code)"><b>Claude Code</b><span>指令列代理:批次、大量、自動化文件處理</span></div>
+        <div class="spoke" style="--c:var(--ink)"><b>手機 App</b><span>隨時交辦、遠端查看 Cowork / Code 進度</span></div>
+      </div>
+    </div>
+
+    <h3>三十秒選對工具:情境對照表</h3>
+    <div class="tablewrap"><table>
+      <tr><th>你的情境</th><th>建議工具</th><th>為什麼</th></tr>
+      <tr><td>寫一份報告、翻譯、摘要、潤稿,或把資料變成一份 Word / PPT / Excel 檔</td><td><span class="tag tg-web">網頁/App</span></td><td>開對話就能做,還能直接產出可下載的檔案</td></tr>
+      <tr><td>每天在網頁後台重複填表、整理 Gmail、比對多個網站資料</td><td><span class="tag tg-chrome">Chrome 外掛</span></td><td>Claude 直接在瀏覽器裡替你點擊與輸入</td></tr>
+      <tr><td>整天泡在 Excel 模型、PPT 簡報、Word 公文與 Outlook 信件裡</td><td><span class="tag tg-m365">Microsoft 365</span></td><td>Claude 就在側邊欄,直接改你打開的檔案</td></tr>
+      <tr><td>電腦裡有一整個資料夾的檔案要整理、合併、改名、彙整成報告</td><td><span class="tag tg-cowork">Cowork</span></td><td>桌面代理可直接讀寫本機資料夾,免上傳下載</td></tr>
+      <tr><td>要一次處理幾十、幾百份文件,或建立可重複執行的自動化流程</td><td><span class="tag tg-code">Claude Code</span></td><td>指令列代理最擅長批次與可重現的流程</td></tr>
+    </table></div>
+    <div class="tip"><b class="nt">觀 念</b>這些工具可以「接力」使用:例如 Chrome 外掛上網蒐集資料 → Cowork 在桌面把資料整理成 Excel 與簡報,中間完全不用手動複製貼上。後面的卷宗會逐一圖解。</div>
+  </div>
+</section>
+
+<!-- ================= 卷宗一:網頁/App ================= -->
+<section class="dossier" id="web" style="--tabc:var(--tab-web)">
+  <div class="dossier-head">
+    <div class="no">卷 宗 一</div>
+    <h2>Claude 網頁版與 App:文書工作的起點</h2>
+    <div class="sub">claude.ai/手機 App/桌面版 — 對話即生產</div>
+  </div>
+  <div class="body">
+    <p>最基本、也最被低估的入口。除了問答之外,網頁與 App 版的 Claude 能<b>直接產出真正的檔案</b>:Word(.docx)、Excel(.xlsx)、PowerPoint(.pptx)、PDF,做完直接下載,不是只給你一段文字要你自己貼。</p>
+
+    <h3>它能替文書工作者做什麼</h3>
+    <div class="cards">
+      <div class="card"><b class="t">📄 文件生成</b><p>會議紀錄、簽呈、公文、企劃書、合約草稿、新聞稿——描述需求即可產出完整 Word 或 PDF 檔,含標題階層、目錄、表格與頁碼。</p></div>
+      <div class="card"><b class="t">📊 表格與資料</b><p>貼上雜亂資料或上傳 CSV,Claude 幫你清理、去重、做樞紐分析、產出含公式與圖表的 Excel 檔。</p></div>
+      <div class="card"><b class="t">🖥️ 簡報製作</b><p>「幫我把這份報告做成 12 頁的提案簡報」——直接生成 .pptx,可再逐頁要求修改。</p></div>
+      <div class="card"><b class="t">🔍 文件分析</b><p>上傳 PDF、合約、報表、掃描檔,請 Claude 摘要重點、比對差異、抓出風險條款、翻譯成雙語對照。</p></div>
+      <div class="card"><b class="t">📁 專案(Projects)</b><p>把常用背景資料(公司簡介、格式範本、術語表)放進專案,之後每次對話 Claude 都自動記得,不必重複交代。</p></div>
+      <div class="card"><b class="t">⚙️ 技能(Skills)</b><p>把你的固定作業流程(例如「週報格式」「客戶信範本規則」)存成技能,一句話就套用,全組織可共用。</p></div>
+    </div>
+
+    <h3>操作圖解:五步驟做出一份正式報告</h3>
+    <ol class="flow">
+      <li><b>開新對話,上傳原始素材</b><span>點輸入框旁的「+」→ 上傳檔案。可一次丟入會議逐字稿、Excel 數據、舊版報告等多個檔案。</span></li>
+      <li><b>用一句話說清楚「產出物」</b><span>例:「請根據這三個檔案,寫一份 10 頁的季度營運檢討報告,產出 Word 檔,格式比照上傳的舊版報告。」關鍵字:檔案格式、頁數、比照範本。</span></li>
+      <li><b>Claude 分析 → 生成檔案</b><span>Claude 會先讀完素材、規劃章節,再實際建立 .docx 檔。過程中可看到它的工作步驟。</span></li>
+      <li><b>逐項修改,不必重來</b><span>直接說「第三章加一張同比成長表」「語氣改正式一點」,Claude 會在同一份檔案上修改。</span></li>
+      <li><b>下載交付</b><span>點檔案卡片即可下載,直接寄出或再微調。</span></li>
+    </ol>
+
+    <div class="prompt"><span class="plabel">提 示 語 範 例</span>「附件是本週五場會議的逐字稿。請整理成一份會議紀錄 Word 檔:每場會議一節,含出席者、決議事項、待辦(負責人+期限),最後加一頁跨會議待辦總表。」</div>
+    <div class="tip"><b class="nt">小 技 巧</b>要求「比照我上傳的範本格式」是文書工作最省力的一招——Claude 會沿用你的標題樣式、字體層級與表格版式,產出直接符合公司格式的檔案。</div>
+  </div>
+</section>
+
+<!-- ================= 卷宗二:Chrome ================= -->
+<section class="dossier" id="chrome" style="--tabc:var(--tab-chrome)">
+  <div class="dossier-head">
+    <div class="no">卷 宗 二</div>
+    <h2>Claude for Chrome:住進瀏覽器的助理</h2>
+    <div class="sub">Google Chrome 外掛(Beta)— 會點擊、會填表、會自己跑流程</div>
+  </div>
+  <div class="body">
+    <p>安裝後,Claude 以<b>側邊欄</b>形式常駐在 Chrome 裡:它看得到你正在看的網頁,並且能在你授權下<b>實際點擊按鈕、填寫表單、切換分頁、擷取資料</b>。目前為 Beta 功能,開放給所有付費方案(Pro、Max、Team、Enterprise)。</p>
+
+    <h3>文書工作者的五大殺手級用法</h3>
+    <div class="cards">
+      <div class="card"><b class="t">📝 自動填表</b><p>報帳系統、請購單、政府申辦網站、問卷後台——把資料給 Claude,它逐欄替你填好,你只需最後確認送出。</p></div>
+      <div class="card"><b class="t">📧 信箱整理</b><p>請 Claude 掃描 Gmail,找出行銷信與通知信列成清單供你確認後批次刪除;或替你草擬回信。</p></div>
+      <div class="card"><b class="t">🌐 跨網站彙整</b><p>把多個分頁拖進 Claude 的分頁群組,它能同時讀取所有分頁,比對競品價格、彙整多站資訊成一張表。</p></div>
+      <div class="card"><b class="t">🎬 錄製工作流程</b><p>按下錄製鍵,自己示範一次操作步驟(例如每週上傳週報到內部系統),Claude 學會後即可重複代勞。</p></div>
+      <div class="card"><b class="t">⏰ 排程任務</b><p>點外掛面板右上角的時鐘圖示,可將流程設為每日/每週/每月自動執行——例如每週一早上自動彙整上週表單回覆。</p></div>
+      <div class="card"><b class="t">🧭 熟門熟路</b><p>Claude 內建對 Gmail、Google 日曆、Google Docs、Slack、GitHub 等常用平台的操作知識,交辦時不必教它介面。</p></div>
+    </div>
+
+    <h3>操作圖解:從安裝到第一個任務</h3>
+    <ol class="flow">
+      <li><b>安裝外掛</b><span>到 Chrome 線上應用程式商店搜尋「Claude」→ 加到 Chrome →(建議)點拼圖圖示把 Claude 釘選到工具列。僅支援 Chrome 桌面版。</span></li>
+      <li><b>登入 Claude 帳號</b><span>使用你既有的付費帳號登入,並授予外掛所需權限。</span></li>
+      <li><b>選擇權限模式</b><span>建議新手用「先詢問再行動」:Claude 會先提出計畫給你核准,再在核准範圍內自主執行;高風險動作(發佈、購買、送出個資)一律會再問你。</span></li>
+      <li><b>打開側邊欄,交辦任務</b><span>點工具列的 Claude 圖示 → 側邊欄開啟 → 用白話描述:「幫我把這頁表單用右邊這份資料填好,填完先讓我檢查。」</span></li>
+      <li><b>確認 → 執行 → 驗收</b><span>看著 Claude 即時操作。重複性的流程可進一步「錄製」或「排程」,之後一鍵重跑。</span></li>
+    </ol>
+
+    <div class="prompt"><span class="plabel">提 示 語 範 例</span>「打開這三個競品官網的分頁我已放進你的分頁群組。請比對三家的方案價格與功能差異,整理成一張比較表,並標出我們最有優勢的三點。」</div>
+    <div class="note"><b class="nt">安 全 提 醒</b>瀏覽器 AI 可能遭遇「提示注入」(網頁中隱藏的惡意指令)。請從熟悉、信任的網站開始授權;金融交易、密碼管理、敏感個資請勿交給外掛處理;Claude 對高風險網站(如銀行)會自動停用。逐站授權可隨時在設定中收回。</div>
+  </div>
+</section>
+
+<!-- ================= 卷宗三:M365 ================= -->
+<section class="dossier" id="m365" style="--tabc:var(--tab-m365)">
+  <div class="dossier-head">
+    <div class="no">卷 宗 三</div>
+    <h2>Claude for Microsoft 365:辦公室四大金剛</h2>
+    <div class="sub">Excel・PowerPoint・Word 正式版/Outlook Beta — 側邊欄直接改你的檔案</div>
+  </div>
+  <div class="body">
+    <p>從 Microsoft 市集(AppSource)安裝增益集後,Claude 會以側邊欄出現在 Excel、PowerPoint、Word 與 Outlook 裡,<b>直接讀取並修改你當前打開的檔案</b>。最強大的是「跨應用程式脈絡」:在 Excel 分析完的數據,切到 PowerPoint 時 Claude 還記得,不必重新解釋、不必複製貼上。</p>
+
+    <h3>四個應用程式,各自能做什麼</h3>
+    <div class="cards">
+      <div class="card"><b class="t">Excel|表格與模型</b><p>用白話描述就能寫公式、除錯公式;稽核財務模型(抓循環參照、該用公式卻寫死的數字);清理資料、去重、補漏;依範本自動填入 DCF/LBO 等模型。所有變更會標示出來供你檢查。</p></div>
+      <div class="card"><b class="t">PowerPoint|簡報</b><p>依你的公司範本與投影片母片生成新頁面、改寫選取的文字、產生原生圖表與圖解、統一全簡報的語氣與版式。可在「Instructions」欄設定品牌規範,之後每次都自動套用。</p></div>
+      <div class="card"><b class="t">Word|文件</b><p>起草、改寫、摘要、依公司樣式更新內容;<b>所有修改以 Word 原生「追蹤修訂」呈現</b>,你逐條接受或拒絕,像審同事的稿一樣透明;還能回覆文件內的註解串。</p></div>
+      <div class="card"><b class="t">Outlook|郵件(Beta)</b><p>一句話分類整理收件匣、摘要冗長信件串、抓出待辦事項、草擬回信與會議邀請——但任何信件都要你按下送出才會寄出。</p></div>
+    </div>
+
+    <h3>圖解:一條龍跨應用工作流(這就是它的精髓)</h3>
+    <div class="pipeline" style="--tabc:var(--tab-m365)">
+      <div class="node"><span class="app">OUTLOOK</span><b>早上先問:「今天哪些信需要我處理?」</b><span>Claude 分類收件匣、替幾封簡單的擬好回信,並從客戶來信中打開附件簡報需求。</span></div>
+      <div class="node"><span class="app">WORD</span><b>「依這封信的需求,用公司範本起草提案備忘錄」</b><span>信件脈絡自動帶入 Word,Claude 以追蹤修訂方式產出草稿。</span></div>
+      <div class="node"><span class="app">EXCEL</span><b>「替備忘錄裡的方案建一個三年財務試算」</b><span>Claude 已理解備忘錄內容,直接在 Excel 建模型;你調整假設,公式不會被弄壞。</span></div>
+      <div class="node"><span class="app">POWERPOINT</span><b>「把以上分析做成 8 頁決策簡報,套用公司範本」</b><span>數據、結論、圖表自動從 Excel 與 Word 帶入簡報——全程零複製貼上。</span></div>
+    </div>
+
+    <h3>操作圖解:安裝與啟用</h3>
+    <ol class="flow">
+      <li><b>安裝增益集</b><span>在任一 Office 應用程式中:插入 → 取得增益集 → 搜尋「Claude by Anthropic」→ 安裝(或由公司 IT 從 Microsoft 365 管理中心統一佈署)。</span></li>
+      <li><b>啟用並登入</b><span>Windows:常用 → 增益集;Mac:工具 → 增益集。開啟 Claude 面板後以 Claude 帳號登入。</span></li>
+      <li><b>(選用)開啟跨檔案功能</b><span>在各增益集的 Settings 開啟「Let Claude work across files」,並確保要協作的檔案都已打開——Claude 只能讀寫「目前開啟」的檔案。</span></li>
+      <li><b>設定 Instructions 常駐指示</b><span>例如在 Excel 寫「輸入格用藍字、公式用黑字」,在 PPT 寫「條列每行不超過一行」,之後每次對話自動遵守。</span></li>
+      <li><b>交辦、檢查、接受</b><span>Excel 會醒目標示變更、Word 走追蹤修訂——養成「先檢查再存檔」的習慣即可放心使用。</span></li>
+    </ol>
+
+    <div class="prompt"><span class="plabel">提 示 語 範 例(Excel)</span>「稽核這個模型:找出循環參照、寫死的數字、加總不平衡的地方,列成清單並說明建議修法,先不要直接改。」</div>
+    <div class="tip"><b class="nt">團 隊 加 乘</b>常用流程可存成「技能(Skills)」全組織共享:合約審查清單、週報格式、簡報品牌規範……新人也能一鍵產出符合團隊標準的成果。Excel、PPT、Word 已對所有付費方案正式開放,Outlook 為 Beta。</div>
+  </div>
+</section>
+
+
+<!-- ================= 卷宗四:Cowork ================= -->
+<section class="dossier" id="cowork" style="--tabc:var(--tab-cowork)">
+  <div class="dossier-head">
+    <div class="no">卷 宗 四</div>
+    <h2>Claude Cowork:你的桌面數位同事</h2>
+    <div class="sub">桌面版代理 — 直接在你電腦的資料夾裡工作,交辦一次、拿回成品</div>
+  </div>
+  <div class="body">
+    <p>Cowork 是為「不寫程式的知識工作者」設計的代理式工具:你指定一個工作資料夾並授權,Claude 就能<b>直接讀取、編輯、建立本機檔案</b>,在受控的隔離環境中把整件事做完——不必上傳、下載、也不必把工作拆成一句一句的指令。它的定位是:<b>你給結果,它包過程。</b>透過所有付費方案的 Claude 桌面應用程式即可使用。</p>
+
+    <h3>最適合交給 Cowork 的四類文書工作</h3>
+    <div class="cards">
+      <div class="card"><b class="t">🗂️ 資料夾大掃除</b><p>下載資料夾裡混雜著草稿、附件、截圖?請它依專案分類、統一命名規則、揪出重複檔、把半年以上舊檔歸檔。</p></div>
+      <div class="card"><b class="t">📑 多檔合成報告</b><p>丟給它一個裝滿來源檔的資料夾(訪談稿、數據、簡報),它自動閱讀、消化、產出結構完整的報告初稿——你只需做最後的判斷與修飾。</p></div>
+      <div class="card"><b class="t">🔁 高工時重複作業</b><p>每月都要做的格式轉換、資料彙整、名單比對:描述一次流程,之後可設成排程任務定期自動執行。</p></div>
+      <div class="card"><b class="t">🔎 掃描與盤點</b><p>那些「重要但一直沒空做」的事:掃過幾百筆客戶回饋找共通抱怨、盤點合約到期日、檢查文件版本差異——現在會真的被做完。</p></div>
+    </div>
+
+    <h3>操作圖解:第一次使用 Cowork</h3>
+    <ol class="flow">
+      <li><b>開啟 Claude 桌面應用程式</b><span>在 Mac 或 Windows 的 Claude 桌面版中切換到 Cowork。</span></li>
+      <li><b>指定工作資料夾並授權</b><span>選一個資料夾作為 Claude 的工作範圍——它只碰你授權的地方,並在隔離的虛擬環境中運作。</span></li>
+      <li><b>描述「最終要拿到什麼」</b><span>例:「把這個資料夾裡 37 份出差報告,彙整成一份 Excel 總表(人員/日期/金額/事由)加一份兩頁的費用分析摘要。」</span></li>
+      <li><b>核准計畫</b><span>Claude 會先把任務拆解成步驟給你確認,重大決定仍由你拍板。</span></li>
+      <li><b>放手讓它跑,回來驗收成品</b><span>期間你可以去做別的事(也能從手機 App 查看進度);完成後直接在資料夾裡拿到成品檔。</span></li>
+    </ol>
+
+    <div class="prompt"><span class="plabel">提 示 語 範 例</span>「掃描『客服回饋』資料夾內所有檔案,把客訴依主題分類統計,產出:1) 分類統計 Excel;2) 前五大問題與代表性原文摘錄的 Word 報告;3) 給主管的十行重點信草稿。」</div>
+    <div class="tip"><b class="nt">接 力 玩 法</b>Cowork 可搭配 Chrome 外掛:讓 Chrome 上網逛競品網站蒐集價格與定位,Cowork 在桌面把一切彙編成格式完整的 PowerPoint——研究到成品之間不再有手動搬運。注意:代理任務消耗額度遠高於一般對話,Pro 方案較快達到用量上限。</div>
+  </div>
+</section>
+
+<!-- ================= 卷宗五:Claude Code ================= -->
+<section class="dossier" id="code" style="--tabc:var(--tab-code)">
+  <div class="dossier-head">
+    <div class="no">卷 宗 五</div>
+    <h2>Claude Code:進階者的自動化引擎</h2>
+    <div class="sub">指令列/桌面/手機皆可驅動 — 批次、大量、可重現</div>
+  </div>
+  <div class="body">
+    <p>Claude Code 原是給工程師的指令列代理,但 Anthropic 內部的行銷、數據等<b>非技術團隊</b>早就拿它處理複雜的多步驟工作——Cowork 正是由此誕生的簡化版。如果你的文書需求已經超過「一份一份做」,Code 就是下一站。</p>
+
+    <h3>文書場景下的威力</h3>
+    <div class="cards">
+      <div class="card"><b class="t">⚡ 批次處理</b><p>「把這 200 份 Word 依新範本重排並轉成 PDF」「從 300 份合約抽出甲方、金額、期限做成總表」——一個指令,整批完成。</p></div>
+      <div class="card"><b class="t">🧱 建立可重現流程</b><p>把「每月結報流程」寫成一次描述,之後每月同樣品質重跑;也可打包成技能(Skills)給團隊共用。</p></div>
+      <div class="card"><b class="t">🛠️ 自建小工具</b><p>不會寫程式也能用白話請它做出「發票彙整器」「命名批次修正器」等專屬小工具,一勞永逸。</p></div>
+      <div class="card"><b class="t">🌐 與 Chrome 聯手</b><p>Code 與 Chrome 外掛可整合:終端機處理檔案、瀏覽器上網驗證與抓取,打通線上線下。</p></div>
+    </div>
+
+    <h3>操作圖解:非工程師的入門路徑</h3>
+    <ol class="flow">
+      <li><b>先從 Cowork 開始</b><span>兩者底層能力相同;Cowork 介面友善、權限更受控,適合先建立手感。</span></li>
+      <li><b>需要批次與重現性時再升級</b><span>安裝 Claude Code(終端機或桌面應用程式皆可),指向你的工作資料夾。</span></li>
+      <li><b>一樣用白話交辦</b><span>不需要程式語言:「把 reports 資料夾裡所有 xlsx 的『台北』分頁彙總成一個總表」。</span></li>
+      <li><b>把常用流程存下來</b><span>請它把成功的流程記錄成可重複執行的指令或技能,下次一句話重跑。</span></li>
+      <li><b>手機遠端交辦</b><span>透過 Claude 手機 App 可遠端啟動與查看 Claude Code 任務——通勤時交辦,到公司收成品。</span></li>
+    </ol>
+    <div class="tip"><b class="nt">選 擇 心 法</b>一句話記住三兄弟:<b>聊天版是「問答與單件生產」、Cowork 是「桌面自動化」、Code 是「批次與工程級自動化」。</b>多數文書工作者的日常,用前兩者就已足夠。</div>
+  </div>
+</section>
+
+<!-- ================= 附錄一:職業別 ================= -->
+<section class="dossier" id="jobs" style="--tabc:var(--tab-web)">
+  <div class="dossier-head">
+    <div class="no">附 錄 一</div>
+    <h2>職業別效益速查</h2>
+    <div class="sub">每天接觸文書工作的人,分別能省下什麼</div>
+  </div>
+  <div class="body">
+    <div class="tablewrap"><table>
+      <tr><th>角色</th><th>最痛的日常</th><th>Claude 怎麼幫</th><th>主力工具</th></tr>
+      <tr><td><b>行政/秘書</b></td><td>會議紀錄、公文簽呈、行程協調、各式表單</td><td>逐字稿→紀錄一鍵成檔;公文比照範本生成;Chrome 代填內部系統表單;Outlook 排會找空檔</td><td><span class="tag tg-web">網頁</span><span class="tag tg-chrome">Chrome</span><span class="tag tg-m365">M365</span></td></tr>
+      <tr><td><b>財務/會計</b></td><td>對帳、月結、模型維護、報表製作</td><td>Excel 公式撰寫與稽核、模型完整性檢查;Cowork 批次彙整憑證與報表;數據直通簡報</td><td><span class="tag tg-m365">M365</span><span class="tag tg-cowork">Cowork</span></td></tr>
+      <tr><td><b>法務/合約</b></td><td>合約審閱、條款比對、版本控管</td><td>Word 追蹤修訂逐條建議;上傳合約抓風險條款;審查清單存成團隊技能統一標準</td><td><span class="tag tg-m365">M365</span><span class="tag tg-web">網頁</span></td></tr>
+      <tr><td><b>行銷/企劃</b></td><td>提案簡報、多平台文案、競品研究</td><td>Chrome 掃競品站彙整比較表;Cowork 把研究變成完整提案 PPT;文案多版本快速迭代</td><td><span class="tag tg-chrome">Chrome</span><span class="tag tg-cowork">Cowork</span></td></tr>
+      <tr><td><b>業務/客服</b></td><td>回信、報價單、客戶資料維護、拜訪紀錄</td><td>Outlook 分類與擬回信;行事曆對照 CRM 草擬活動紀錄;客訴回饋批次分析找痛點</td><td><span class="tag tg-m365">M365</span><span class="tag tg-chrome">Chrome</span></td></tr>
+      <tr><td><b>研究/分析</b></td><td>文獻與資料消化、報告撰寫</td><td>多檔上傳交叉摘要;Cowork 合成結構化報告初稿;Code 批次抽取數百份文件的欄位</td><td><span class="tag tg-web">網頁</span><span class="tag tg-cowork">Cowork</span><span class="tag tg-code">Code</span></td></tr>
+      <tr><td><b>人資/HR</b></td><td>職缺說明、履歷初篩彙整、制度文件</td><td>JD 與制度文件比照範本生成;履歷資料夾彙整成比較總表;訓練教材成套產出(講義+簡報+測驗)</td><td><span class="tag tg-web">網頁</span><span class="tag tg-cowork">Cowork</span></td></tr>
+    </table></div>
+    <p>共通的效益模式:<b>「找、貼、排、對」這四種最消耗時間的動作被接手</b>——找資料、複製貼上、排版格式、逐筆核對——人保留判斷、決策與最後把關。</p>
+  </div>
+</section>
+
+<!-- ================= 附錄二:提示語範本 ================= -->
+<section class="dossier" id="prompts" style="--tabc:var(--tab-cowork)">
+  <div class="dossier-head">
+    <div class="no">附 錄 二</div>
+    <h2>提示語範本庫:照抄即可上手</h2>
+    <div class="sub">好的交辦=產出物+格式+範圍+驗收標準</div>
+  </div>
+  <div class="body">
+    <div class="prompt" style="--tabc:var(--tab-web)"><span class="plabel">網頁版|文件生成</span>「把附件的英文合約翻成繁體中文,做成左英右中對照表的 Word 檔;金額、日期、專有名詞維持原文並以黃底標示,最後附一頁『對我方不利條款』摘要。」</div>
+    <div class="prompt" style="--tabc:var(--tab-web)"><span class="plabel">網頁版|簡報</span>「根據這份 20 頁報告做一份 10 頁內的主管簡報 pptx:每頁一個重點、一句結論式標題、數據用圖表呈現,最後一頁是三個待決策事項。」</div>
+    <div class="prompt" style="--tabc:var(--tab-chrome)"><span class="plabel">Chrome|信箱</span>「掃描我的收件匣,把行銷信與系統通知列成清單讓我確認後批次封存;另外把三天內需要回覆的信各擬一份 80 字內的回信草稿。」</div>
+    <div class="prompt" style="--tabc:var(--tab-chrome)"><span class="plabel">Chrome|排程</span>「錄製我剛示範的『下載本週表單回覆→整理成表→上傳到內部系統』流程,之後每週一早上九點自動執行,完成後通知我。」</div>
+    <div class="prompt" style="--tabc:var(--tab-m365)"><span class="plabel">Excel|清理</span>「這張客戶名單有重複與格式不一:統一電話格式、公司名去除全半形差異後去重、空值標紅,並在新分頁給我清理前後的筆數對照。」</div>
+    <div class="prompt" style="--tabc:var(--tab-m365)"><span class="plabel">Word|審閱</span>「以追蹤修訂審這份辦法:語氣改為正式公文體、統一『申請人/申請者』用詞、每條修改附一句理由,先不要動第五章。」</div>
+    <div class="prompt" style="--tabc:var(--tab-cowork)"><span class="plabel">Cowork|資料夾</span>「整理『下載』資料夾:依專案關鍵字分資料夾、檔名統一為『日期_專案_文件名』、重複檔留最新版其餘移到 _dup、超過六個月未動的移到 archive,完成後給我一份異動清單。」</div>
+    <div class="prompt" style="--tabc:var(--tab-code)"><span class="plabel">Code|批次</span>「把 contracts 資料夾裡所有 PDF 合約的甲方、乙方、簽約日、金額、到期日抽出來,彙整成 Excel 總表;到期日在 90 天內的整列標黃。」</div>
+    <div class="tip"><b class="nt">口 訣</b>交辦四要素:<b>①產出物</b>(要 Word?Excel?清單?)<b>②格式</b>(頁數、範本、欄位)<b>③範圍</b>(哪些檔、哪些不要動)<b>④驗收標準</b>(先給清單確認/附異動說明)。四項齊全,一次到位的機率大增。</div>
+  </div>
+</section>
+
+<!-- ================= 附錄三:安全 ================= -->
+<section class="dossier" id="safety" style="--tabc:var(--tab-safe)">
+  <div class="dossier-head">
+    <div class="no">附 錄 三</div>
+    <h2>安全守則與使用心法</h2>
+    <div class="sub">放手交辦,但把關永遠在你手上</div>
+  </div>
+  <div class="body">
+    <div class="cards">
+      <div class="card"><b class="t">✅ 人是最後一關</b><p>Word 走追蹤修訂、Excel 標示變更、Outlook 要你按送出、Cowork 先給計畫再執行——這些設計都是為了讓你審核。正式對外文件、法律與稽核文件,務必人工複核後再交付。</p></div>
+      <div class="card"><b class="t">🔐 權限最小化</b><p>Chrome 外掛採逐站授權、可隨時收回;Cowork 只碰你指定的資料夾。原則:先小範圍試、確認可靠再擴大。</p></div>
+      <div class="card"><b class="t">🚫 三不原則</b><p>不讓瀏覽器代理碰金融交易、不讓它管理密碼、不在未監督下處理高敏感個資。高風險動作 Claude 也會主動再次向你確認。</p></div>
+      <div class="card"><b class="t">🧾 留下軌跡</b><p>Excel 可開啟 Claude Log 記錄每回合動作;Enterprise 方案可將 Office 增益集稽核紀錄接入企業自有監控系統,符合稽核需求。</p></div>
+      <div class="card"><b class="t">📊 額度概念</b><p>代理式任務(Cowork/Code/Chrome 自動化)消耗額度遠高於一般聊天;把它們留給「高工時、高重複」的任務最划算。</p></div>
+      <div class="card"><b class="t">🧠 心法</b><p>把 Claude 當成一位能力很強的新同事:交辦要講清楚、成果要驗收、權限逐步放。適應一兩週後,你會自然知道哪些事「以後都給 Claude」。</p></div>
+    </div>
+    <p style="margin-top:8px">各工具的方案資格、Beta 狀態與細部限制可能持續更新,以官方說明中心 <b>support.claude.com</b> 為準。</p>
+  </div>
+</section>
+
+<footer>
+  本手冊依 Anthropic 官方文件與產品頁整理(2026 年中);功能與方案以官方最新公告為準。<br>
+  Claude 網頁/App.Claude for Chrome.Claude for Microsoft 365.Claude Cowork.Claude Code
+</footer>
+
+</div>
+</body>
+</html>

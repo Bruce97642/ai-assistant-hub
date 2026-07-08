@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你適合哪個 AI 助理?|30 秒測驗</title>
+<meta name="description" content="六個問題,30 秒找到最適合你的 AI 助理:Claude、Gemini 還是 ChatGPT?附完整入門指南。">
+<meta property="og:title" content="你適合哪個 AI 助理?|30 秒測驗">
+<meta property="og:description" content="六個問題,找到你的第一個 AI 助理">
+<style>
+:root{--bg:#FAF7F2;--card:#FFFFFF;--ink:#2D3142;--soft:#6B7280;--line:#E5E0D8;
+--c1:#B3362B;--c1s:#F9ECEA;--c2:#3F6BB5;--c2s:#E8EFFA;--c3:#1F8A70;--c3s:#E5F4EF;--gold:#C99A2E;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.8;}
+.topbar{background:var(--gold);color:#fff;padding:10px 16px;font-size:14px;position:sticky;top:0;z-index:9;}
+.topbar a{color:#fff;text-decoration:none;font-weight:700;}
+.wrap{max-width:640px;margin:0 auto;padding:32px 20px 64px;}
+h1{font-size:1.6em;text-align:center;line-height:1.4;}
+.sub{text-align:center;color:var(--soft);margin:10px 0 28px;font-size:.95em;}
+/* progress */
+.progress{height:8px;background:var(--line);border-radius:99px;margin-bottom:24px;overflow:hidden;}
+.progress i{display:block;height:100%;background:var(--gold);border-radius:99px;transition:width .3s;width:0;}
+/* question card */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px 24px;box-shadow:0 3px 12px rgba(0,0,0,.04);}
+.qnum{font-size:.8em;font-weight:700;color:var(--gold);letter-spacing:.1em;}
+.qtext{font-size:1.2em;font-weight:700;margin:8px 0 18px;line-height:1.5;}
+.opt{display:block;width:100%;text-align:left;background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0;font-size:1em;font-family:inherit;color:var(--ink);cursor:pointer;transition:border .15s,background .15s;line-height:1.55;}
+.opt:hover{border-color:var(--gold);background:#FDF6E7;}
+/* result */
+.result{display:none;}
+.rcard{background:var(--card);border-radius:18px;padding:30px 26px;text-align:center;border-top:8px solid;box-shadow:0 4px 16px rgba(0,0,0,.06);}
+.rcard .emoji{font-size:3em;}
+.rcard h2{font-size:1.5em;margin:8px 0 4px;}
+.rcard .rtag{font-size:.9em;color:var(--soft);}
+.rcard p.desc{text-align:left;margin:18px 0;color:var(--ink);}
+.rcard .second{font-size:.88em;color:var(--soft);margin-top:4px;}
+.todo{background:var(--bg);border-radius:12px;padding:16px 18px;text-align:left;margin:16px 0;}
+.todo h3{font-size:.95em;margin-bottom:8px;}
+.todo li{margin:6px 0 6px 1.3em;font-size:.95em;}
+.btn{display:inline-block;padding:13px 28px;border-radius:99px;text-decoration:none;font-weight:700;margin:8px 6px 0;border:none;font-size:1em;cursor:pointer;font-family:inherit;}
+.btn.primary{color:#fff;}
+.btn.ghost{background:#fff;border:2px solid var(--line);color:var(--ink);}
+.share-note{font-size:.85em;color:var(--soft);margin-top:14px;}
+.restart{display:block;margin:26px auto 0;background:none;border:none;color:var(--soft);text-decoration:underline;cursor:pointer;font-family:inherit;font-size:.9em;}
+footer{text-align:center;color:var(--soft);font-size:.85em;padding:28px 16px;border-top:1px solid var(--line);}
+footer a{color:var(--c2);}
+</style>
+</head>
+<body>
+<div class="topbar"><a href="index.html">🏠 AI 助理教學館</a></div>
+<div class="wrap">
+  <h1>你適合哪個 AI 助理?</h1>
+  <p class="sub">六個問題・30 秒・找到你的第一個 AI 助理</p>
+  <div class="progress"><i id="bar"></i></div>
+
+  <div id="quiz" class="qcard">
+    <div class="qnum" id="qnum"></div>
+    <div class="qtext" id="qtext"></div>
+    <div id="opts"></div>
+  </div>
+
+  <div id="result" class="result"></div>
+  <button class="restart" id="restart" style="display:none" onclick="location.reload()">↺ 重新測一次</button>
+</div>
+<footer>
+  整理:王少宇|<a href="https://www.facebook.com/wang.shao.yu.425898" target="_blank">Facebook</a>|<a href="index.html">三大 AI 助理完整指南</a>
+</footer>
+
+<script>
+const QS = [
+ {q:"你每天工作,最常跟哪種東西搏鬥?",o:[
+  ["公文、報告、簡報、核銷表格","C"],
+  ["爆量的 Email 和排不完的行程","G"],
+  ["很難說,每天都不一樣","T"]]},
+ {q:"如果 AI 助理只能幫你做一件事,你選?",o:[
+  ["直接生出一份能交的 Word/簡報檔","C"],
+  ["幫我讀信、擬回信、管行事曆","G"],
+  ["陪我想事情、回答各種問題","T"]]},
+ {q:"你平常的數位生活比較像?",o:[
+  ["電腦開一堆文件視窗,存檔存不停","C"],
+  ["整天活在 Gmail、Google 文件、雲端硬碟","G"],
+  ["手機不離身,想到什麼就查什麼","T"]]},
+ {q:"對於「付費」,你的態度是?",o:[
+  ["工作用得上,值得就付","C"],
+  ["先把免費的用好用滿再說","G"],
+  ["跟大家用一樣的,比較不會錯","T"]]},
+ {q:"下面哪句話最戳中你?",o:[
+  ["「這份計畫書今天一定要交」","C"],
+  ["「我的信箱有 87 封未讀」","G"],
+  ["「我想學 AI,但不知道從哪開始」","T"]]},
+ {q:"你希望你的 AI 助理是哪種個性?",o:[
+  ["最會做事的專業秘書,交辦就完成","C"],
+  ["跟我現有的工具無縫接軌,不用搬家","G"],
+  ["最多人用、教學最多、遇到問題好求救","T"]]}
+];
+const R = {
+ C:{name:"Claude",emoji:"🟠",color:"var(--c1)",tag:"文書代辦力最強的專業秘書",
+   desc:"你是「要交件」的人——計畫書、報告、簡報、表格是你的日常。Claude 最強的就是把一句話變成一份能直接交的檔案:Word、Excel、PPT、PDF 都能直接生成下載,還有 Chrome 外掛幫你自動填表、Cowork 幫你整理整個資料夾。",
+   todo:["到 claude.ai 註冊,免費版就能開始","把你手上一份要寫的文件,用「角色+任務+材料+格式」交辦給它","看完整指南,學會五步驟做出正式報告"],
+   link:"guides/claude.html"},
+ G:{name:"Gemini",emoji:"🔵",color:"var(--c2)",tag:"Google 全家桶的原生助理",
+   desc:"你的工作已經住在 Google 裡了——那最快的路就是讓 Gemini 直接接手。它能讀你的 Gmail、幫你擬回信、整理雲端硬碟和日曆,免費版還能用 Deep Research 幫你自動做研究報告,對 Google 重度使用者幾乎零學習成本。",
+   todo:["開 gemini.google.com,用你現有的 Google 帳號直接登入","在 Gmail 側邊欄叫它「幫我摘要這封信並擬回覆」","出一個題目給 Deep Research,看它自己查資料寫報告"],
+   link:"guides/gemini.html"},
+ T:{name:"ChatGPT",emoji:"🟢",color:"var(--c3)",tag:"最多人用的國民入門款",
+   desc:"你適合從最多人走過的路開始。ChatGPT 是目前使用者最多、教學資源最豐富的 AI 助理,什麼都會一點:寫作、翻譯、摘要、分析資料、當家教。遇到問題隨便搜都有答案,是建立「跟 AI 對話」手感的最好起點。",
+   todo:["到 chatgpt.com 註冊,先用免費版","學會 CRTF 四要素:角色、要求、任務、格式","從「幫我改一封信」開始,建立每天用一次的習慣"],
+   link:"guides/chatgpt.html"}
+};
+let i=0, score={C:0,G:0,T:0};
+const $=id=>document.getElementById(id);
+function render(){
+  $("bar").style.width=(i/QS.length*100)+"%";
+  $("qnum").textContent=`第 ${i+1} 題/共 ${QS.length} 題`;
+  $("qtext").textContent=QS[i].q;
+  $("opts").innerHTML="";
+  QS[i].o.forEach(([t,k])=>{
+    const b=document.createElement("button");
+    b.className="opt"; b.textContent=t;
+    b.onclick=()=>{score[k]++; i++; i<QS.length?render():finish();};
+    $("opts").appendChild(b);
+  });
+}
+function finish(){
+  $("bar").style.width="100%";
+  const order=Object.keys(score).sort((a,b)=>score[b]-score[a]);
+  const top=R[order[0]], second=R[order[1]];
+  const tie = score[order[0]]===score[order[1]];
+  $("quiz").style.display="none";
+  $("restart").style.display="block";
+  const r=$("result");
+  r.style.display="block";
+  r.innerHTML=`
+  <div class="rcard" style="border-top-color:${top.color}">
+    <div class="emoji">${top.emoji}</div>
+    <h2>你的 AI 助理是 ${top.name}</h2>
+    <div class="rtag">${top.tag}</div>
+    ${tie?`<div class="second">(你和 ${second.name} 也很合,平手!兩個都可以試)</div>`:""}
+    <p class="desc">${top.desc}</p>
+    <div class="todo"><h3>🚀 今天就能做的三件事</h3><ol>${top.todo.map(t=>`<li>${t}</li>`).join("")}</ol></div>
+    <a class="btn primary" style="background:${top.color}" href="${top.link}">看 ${top.name} 完整入門指南 →</a>
+    <a class="btn ghost" href="https://www.facebook.com/wang.shao.yu.425898" target="_blank">想上實體課?聯絡老師</a>
+    <div class="share-note">📣 把這個測驗傳給還在觀望 AI 的朋友:<br><b>把網址複製給他就行</b></div>
+  </div>`;
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+render();
+</script>
+</body>
+</html>
