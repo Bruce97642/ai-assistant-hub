@@ -188,6 +188,15 @@ footer{
   margin-top:70px;border-top:3px double var(--ink);padding-top:18px;
   font-size:13px;color:var(--ink-soft);
 }
+footer a{color:var(--tab-web);}
+section.dossier{scroll-margin-top:60px;}
+.totop{
+  position:fixed;right:18px;bottom:20px;z-index:9;
+  background:var(--stamp);color:#fff;text-decoration:none;
+  font-size:13px;font-weight:700;padding:10px 14px;border-radius:99px;
+  box-shadow:0 3px 10px rgba(34,48,74,.25);font-family:'Noto Sans TC',sans-serif;
+}
+.totop:hover{background:#992E24;}
 @media (max-width:560px){
   body{font-size:15.5px;}
   .flow li{padding-left:54px;}
@@ -196,7 +205,7 @@ footer{
 </style>
 </head>
 <body>
-<div style="background:#B3362B;color:#fff;padding:10px 16px;font-size:14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99;font-family:'Noto Sans TC',sans-serif;">
+<div id="top" style="background:#B3362B;color:#fff;padding:10px 16px;font-size:14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99;font-family:'Noto Sans TC',sans-serif;">
 <a href="../index.html" style="color:#fff;text-decoration:none;font-weight:700;">🏠 AI 助理教學館</a>
 <a href="../quiz.html" style="color:#fff;text-decoration:none;font-weight:700;">測驗:你適合哪個 AI 助理?</a>
 </div>
@@ -208,6 +217,7 @@ footer{
   <h1>Claude<br>文書作業<em>完全應用指南</em></h1>
   <p class="lede">從網頁對話、Chrome 瀏覽器外掛、Microsoft 365 增益集、Cowork 桌面代理到 Claude Code——一份給每天與文件、表格、簡報、郵件搏鬥的你,一看就會的完整圖解手冊。</p>
   <span class="stamp">一看就會.即學即用</span>
+  <p style="margin-top:16px;font-size:13px;color:var(--ink-soft);">資訊基準:2026 年 7 月|AI 工具更新快,功能與方案請以官方最新公告為準</p>
 </header>
 
 <!-- ================= 色籤目錄 ================= -->
@@ -495,9 +505,14 @@ footer{
 
 <footer>
   本手冊依 Anthropic 官方文件與產品頁整理(2026 年中);功能與方案以官方最新公告為準。<br>
-  Claude 網頁/App.Claude for Chrome.Claude for Microsoft 365.Claude Cowork.Claude Code
+  Claude 網頁/App.Claude for Chrome.Claude for Microsoft 365.Claude Cowork.Claude Code<br><br>
+  整理:王少宇|花蓮光復鄉・在地工作者 × 教人把 AI 當助理<br>
+  <a href="https://www.facebook.com/wang.shao.yu.425898" target="_blank">Facebook</a> ・
+  <a href="../index.html">回教學館首頁</a> ・
+  <a href="../quiz.html">測驗:你適合哪個 AI 助理?</a>
 </footer>
 
 </div>
+<a class="totop" href="#top" aria-label="回到頂部">▲ 回頂部</a>
 </body>
 </html>
