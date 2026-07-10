@@ -5,7 +5,12 @@
 
 ## 這是什麼
 
-王少宇的「AI 助理教學館」——純靜態網站,GitHub Pages 部署。兩個功能:
+王少宇的「AI 助理教學館」——純靜態網站。兩個功能:
+
+**部署(2026-07-10 起雙軌):**
+- 主站:https://ai-assistant-hub-eosin.vercel.app/(Vercel,Web Analytics 溫度計已啟用;對外分享一律用這個)
+- 備援:https://bruce97642.github.io/ai-assistant-hub/(GitHub Pages)
+- `git push` 後兩邊自動部署;`.vercel/`、`.env*` 是機密,已 gitignore,絕不入 repo
 
 1. **教學館**:三份完整指南(Claude 文書應用 / Gemini 解析 / ChatGPT×Codex 手冊),作為課程《AI 當你的助理》的課後資源與個人品牌門面
 2. **測驗**:「你適合哪個 AI 助理?」六題測驗,結果頁導流到指南+FB(課程邀約入口)
